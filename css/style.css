@@ -1,67 +1,36 @@
 :root {
-    --bg: #f6efe5;
-    --bg-soft: #fffaf4;
+    --bg: #f7efe4;
+    --bg-soft: #fffaf3;
     --card: #fffdf9;
-
-    --text: #4a3428;
-    --text-soft: #7c6659;
-
-    --accent: #bd724e;
-    --accent-dark: #995738;
-
-    --gold: #ad7938;
-
-    --line: #e6cfaf;
-
+    --line: #e7c9a2;
+    --text: #4a3429;
+    --text-soft: #7f6556;
+    --accent: #c77950;
+    --accent-dark: #9f5c3d;
+    --gold: #a86934;
     --error-bg: #fff2ef;
-    --error-line: #dfa08d;
-    --error-text: #8d4534;
-
-    --shadow:
-        0 16px 42px rgba(83, 57, 40, 0.07);
-
-    --radius-large: 28px;
-    --radius-medium: 18px;
-    --radius-small: 12px;
-
+    --error-line: #df9a86;
+    --shadow: 0 14px 38px rgba(89, 59, 40, 0.08);
+    --radius-lg: 28px;
+    --radius-md: 18px;
     --max-width: 1180px;
 }
-
-
-/* =====================================================
-   RESET
-===================================================== */
 
 * {
     box-sizing: border-box;
 }
 
-
 html {
     scroll-behavior: smooth;
 }
 
-
 body {
     margin: 0;
-
-    background:
-        var(--bg);
-
-    color:
-        var(--text);
-
-    font-family:
-        "Noto Sans KR",
-        sans-serif;
-
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Noto Sans KR", sans-serif;
     line-height: 1.75;
-
-    word-break: keep-all;
-
-    overflow-wrap: break-word;
 }
-
 
 button,
 input,
@@ -70,2064 +39,786 @@ textarea {
     font: inherit;
 }
 
-
-button {
-    cursor: pointer;
-}
-
-
 a {
     color: inherit;
     text-decoration: none;
 }
 
-
 [hidden] {
     display: none !important;
 }
 
-
-/* =====================================================
+/* =========================
    HEADER
-===================================================== */
+========================= */
 
 .site-header {
     position: sticky;
-
     top: 0;
-
     z-index: 100;
-
-    background:
-        rgba(255, 250, 244, 0.96);
-
-    backdrop-filter:
-        blur(12px);
-
-    border-bottom:
-        1px solid rgba(169, 111, 67, 0.16);
+    background: rgba(255, 250, 243, 0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(170, 118, 72, 0.16);
 }
-
 
 .navigation {
-    width:
-        min(
-            var(--max-width),
-            calc(100% - 40px)
-        );
-
+    width: min(var(--max-width), calc(100% - 40px));
     min-height: 76px;
-
-    margin:
-        0 auto;
-
+    margin: 0 auto;
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
-
-    gap: 30px;
+    gap: 28px;
 }
 
-
 .logo {
-    font-family:
-        "Cormorant Garamond",
-        serif;
-
-    font-size: 1.5rem;
-
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.55rem;
     font-weight: 700;
-
-    color:
-        var(--accent-dark);
-
+    color: var(--accent-dark);
     white-space: nowrap;
 }
 
-
 .nav-menu {
     display: flex;
-
     align-items: center;
-
     gap: 30px;
 }
 
-
 .nav-menu a {
+    font-size: 0.98rem;
     font-weight: 700;
-
-    transition:
-        color 0.2s ease;
+    transition: color 0.2s ease;
 }
-
 
 .nav-menu a:hover {
-    color:
-        var(--accent);
+    color: var(--accent);
 }
 
-
-/* =====================================================
+/* =========================
    COMMON
-===================================================== */
+========================= */
 
 section {
     scroll-margin-top: 90px;
 }
 
-
 .section-heading {
-    width: 100%;
-
-    max-width: 1080px;
-
-    margin:
-        0 auto 50px;
-
+    width: min(1100px, calc(100% - 40px));
+    margin: 0 auto 48px;
     text-align: center;
 }
 
-
 .eyebrow {
-    margin:
-        0 0 12px;
-
-    color:
-        var(--gold);
-
+    margin: 0 0 14px;
+    color: var(--gold);
     font-size: 0.86rem;
-
-    font-weight: 800;
-
+    font-weight: 700;
     letter-spacing: 0.18em;
 }
 
-
 .section-heading h2 {
-    margin:
-        0 0 18px;
-
-    font-family:
-        "Noto Serif KR",
-        serif;
-
-    font-size:
-        clamp(
-            2rem,
-            4vw,
-            3.15rem
-        );
-
+    margin: 0 0 18px;
+    font-family: "Noto Serif KR", serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
     line-height: 1.3;
-
-    letter-spacing: -0.04em;
-
     word-break: keep-all;
-
     overflow-wrap: normal;
 }
-
 
 .section-heading > p:not(.eyebrow) {
-    max-width: 900px;
-
-    margin:
-        0 auto;
-
-    color:
-        var(--text-soft);
-
-    font-size: 1.05rem;
-
-    line-height: 1.9;
-
+    max-width: 1000px;
+    margin: 0 auto;
+    color: var(--text-soft);
+    font-size: 1.04rem;
     word-break: keep-all;
-
     overflow-wrap: normal;
 }
 
+.primary-button,
+.generate-button,
+.secondary-button {
+    border: 0;
+    cursor: pointer;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
 
-/* =====================================================
+.primary-button:hover,
+.generate-button:hover,
+.secondary-button:hover {
+    transform: translateY(-2px);
+}
+
+/* =========================
    HERO
-===================================================== */
+========================= */
 
 .hero-section {
-    position: relative;
-
-    overflow: hidden;
-
-    padding:
-        100px 0 70px;
-
-    background:
-        radial-gradient(
-            circle at 10% 20%,
-            rgba(209, 175, 129, 0.13),
-            transparent 31%
-        ),
-        radial-gradient(
-            circle at 88% 30%,
-            rgba(195, 132, 88, 0.08),
-            transparent 34%
-        ),
-        var(--bg);
+    padding: 100px 0 70px;
+    background: var(--bg);
 }
-
 
 .hero-inner {
-    width:
-        min(
-            var(--max-width),
-            calc(100% - 40px)
-        );
-
-    margin:
-        0 auto;
-
+    width: min(var(--max-width), calc(100% - 40px));
+    margin: 0 auto;
     display: grid;
-
-    grid-template-columns:
-        1.06fr 0.94fr;
-
+    grid-template-columns: 1.05fr 0.95fr;
     align-items: center;
-
-    gap: 68px;
+    gap: 70px;
 }
-
-
-.hero-text {
-    min-width: 0;
-}
-
 
 .hero-text h1 {
-    margin:
-        0 0 24px;
-
-    font-family:
-        "Noto Serif KR",
-        serif;
-
-    font-size:
-        clamp(
-            3rem,
-            5.5vw,
-            5.2rem
-        );
-
+    margin: 0 0 24px;
+    font-family: "Noto Serif KR", serif;
+    font-size: clamp(3rem, 6vw, 5.4rem);
     line-height: 1.13;
-
-    letter-spacing: -0.055em;
-
+    letter-spacing: -0.04em;
     word-break: keep-all;
-
-    overflow-wrap: normal;
 }
-
 
 .hero-hook {
-    margin:
-        0 0 18px;
-
-    font-size: 1.28rem;
-
+    margin: 0 0 18px;
+    font-size: 1.3rem;
     font-weight: 700;
-
     word-break: keep-all;
 }
-
 
 .hero-target {
-    margin:
-        0 0 20px;
-
-    color:
-        #8e5733;
-
+    margin: 0 0 22px;
+    color: #8f562f;
     font-size: 1.12rem;
-
     font-weight: 700;
-
     word-break: keep-all;
 }
-
 
 .hero-description {
     max-width: 650px;
-
-    margin:
-        0 0 32px;
-
-    color:
-        var(--text-soft);
-
-    font-size: 1.04rem;
-
-    line-height: 1.85;
-
+    margin: 0 0 32px;
+    color: var(--text-soft);
+    font-size: 1.05rem;
     word-break: keep-all;
 }
-
 
 .primary-button {
     display: inline-flex;
-
     align-items: center;
-
     justify-content: center;
-
     min-height: 56px;
-
-    padding:
-        0 28px;
-
-    border: 0;
-
+    padding: 0 28px;
     border-radius: 999px;
-
-    background:
-        var(--accent);
-
-    color: #ffffff;
-
-    font-weight: 800;
-
-    box-shadow:
-        0 10px 24px
-        rgba(189, 114, 78, 0.22);
-
-    transition:
-        transform 0.22s ease,
-        box-shadow 0.22s ease,
-        background 0.22s ease;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 700;
+    box-shadow: 0 10px 24px rgba(191, 116, 79, 0.22);
 }
-
-
-.primary-button:hover {
-    transform:
-        translateY(-2px);
-
-    background:
-        var(--accent-dark);
-
-    box-shadow:
-        0 14px 28px
-        rgba(189, 114, 78, 0.25);
-}
-
-
-/* =====================================================
-   HERO MUSIC CARD
-===================================================== */
-
-.hero-visual {
-    display: flex;
-
-    justify-content: center;
-}
-
-
-.music-card {
-    width:
-        min(
-            100%,
-            460px
-        );
-
-    padding: 30px;
-
-    border:
-        1px solid
-        var(--line);
-
-    border-radius: 30px;
-
-    background:
-        rgba(
-            255,
-            253,
-            249,
-            0.94
-        );
-
-    box-shadow:
-        var(--shadow);
-
-    transform:
-        rotate(1deg);
-}
-
-
-.music-sheet {
-    position: relative;
-
-    min-height: 170px;
-
-    padding: 24px;
-
-    border:
-        1px solid
-        #ead4b6;
-
-    border-radius: 20px;
-
-    background:
-        #fffaf2;
-}
-
-
-.treble-clef {
-    position: absolute;
-
-    top: 12px;
-
-    left: 22px;
-
-    color:
-        #8b5839;
-
-    font-size: 2.6rem;
-}
-
-
-.staff {
-    margin-top: 55px;
-}
-
-
-.staff span {
-    display: block;
-
-    height: 1px;
-
-    margin:
-        10px 0;
-
-    background:
-        #b58f6e;
-}
-
-
-.sheet-notes {
-    margin-top: -38px;
-
-    text-align: center;
-
-    color:
-        #925b38;
-
-    font-size: 1.6rem;
-}
-
-
-.piano {
-    height: 118px;
-
-    margin-top: 26px;
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(7, 1fr);
-
-    overflow: hidden;
-
-    border:
-        2px solid
-        #5d4435;
-
-    border-radius: 8px;
-
-    background:
-        #ffffff;
-}
-
-
-.white-key {
-    position: relative;
-
-    border-right:
-        1px solid
-        #b8a18e;
-}
-
-
-.white-key:last-child {
-    border-right: 0;
-}
-
-
-.white-key:nth-child(2)::before,
-.white-key:nth-child(3)::before,
-.white-key:nth-child(5)::before,
-.white-key:nth-child(6)::before,
-.white-key:nth-child(7)::before {
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-
-    left: -18%;
-
-    width: 36%;
-
-    height: 64%;
-
-    background:
-        #48352c;
-}
-
-
-.music-card-message {
-    margin:
-        28px 0 0;
-
-    text-align: center;
-
-    font-family:
-        "Cormorant Garamond",
-        serif;
-
-    color:
-        #805a42;
-
-    font-size: 1.25rem;
-}
-
-
-.floating-note {
-    position: absolute;
-
-    color:
-        rgba(
-            154,
-            99,
-            58,
-            0.07
-        );
-
-    font-size: 6rem;
-
-    pointer-events: none;
-}
-
-
-.note-one {
-    top: 20%;
-
-    left: 4%;
-}
-
-
-.note-two {
-    top: 48%;
-
-    right: 5%;
-}
-
-
-/* =====================================================
-   FEATURE CARDS
-===================================================== */
 
 .hero-features {
-    width:
-        min(
-            var(--max-width),
-            calc(100% - 40px)
-        );
-
-    margin:
-        72px auto 0;
-
+    width: min(var(--max-width), calc(100% - 40px));
+    margin: 72px auto 0;
     display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
+    grid-template-columns: repeat(3, 1fr);
     gap: 22px;
 }
 
-
 .feature-card {
-    min-height: 220px;
-
     padding: 30px;
-
-    border:
-        1px solid
-        var(--line);
-
+    border: 1px solid var(--line);
     border-radius: 24px;
-
-    background:
-        rgba(
-            255,
-            253,
-            249,
-            0.8
-        );
-
+    background: rgba(255, 253, 249, 0.78);
     transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
-
-/* 보너스 UX */
 .feature-card:hover {
-    transform:
-        translateY(-5px);
-
-    box-shadow:
-        var(--shadow);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
 }
-
 
 .feature-icon {
     display: inline-block;
-
     margin-bottom: 18px;
-
-    color:
-        var(--accent);
-
     font-size: 2rem;
+    color: var(--accent);
 }
-
 
 .feature-card h2 {
-    margin:
-        0 0 14px;
-
-    font-size: 1.25rem;
-
-    word-break: keep-all;
+    margin: 0 0 14px;
+    font-size: 1.24rem;
 }
-
 
 .feature-card p {
     margin: 0;
-
-    color:
-        var(--text-soft);
-
+    color: var(--text-soft);
     word-break: keep-all;
 }
 
-
-/* =====================================================
+/* =========================
    ABOUT
-===================================================== */
+========================= */
 
 .about-section {
-    padding:
-        110px 0;
-
-    background:
-        var(--bg-soft);
+    padding: 110px 0;
+    background: var(--bg-soft);
 }
-
-
-.about-section .section-heading {
-    max-width: 1120px;
-}
-
-
-.about-section .section-heading > p:not(.eyebrow) {
-    max-width: 980px;
-}
-
 
 .about-grid {
-    width:
-        min(
-            var(--max-width),
-            calc(100% - 40px)
-        );
-
-    margin:
-        0 auto;
-
+    width: min(var(--max-width), calc(100% - 40px));
+    margin: 0 auto;
     display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
+    grid-template-columns: repeat(3, 1fr);
     gap: 24px;
 }
 
-
 .about-card {
     position: relative;
-
-    min-height: 320px;
-
     padding: 34px;
-
-    border:
-        1px solid
-        var(--line);
-
+    border: 1px solid var(--line);
     border-radius: 24px;
-
-    background:
-        var(--card);
-
+    background: #fffdf9;
     transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
-
-/* 보너스 UX */
 .about-card:hover {
-    transform:
-        translateY(-5px);
-
-    box-shadow:
-        var(--shadow);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
 }
-
-
-.card-number {
-    position: absolute;
-
-    top: 22px;
-
-    right: 28px;
-
-    color:
-        rgba(
-            135,
-            93,
-            61,
-            0.16
-        );
-
-    font-family:
-        "Cormorant Garamond",
-        serif;
-
-    font-size: 2.2rem;
-
-    font-weight: 700;
-}
-
-
-.about-icon {
-    display: inline-block;
-
-    margin-bottom: 28px;
-
-    color:
-        var(--accent);
-
-    font-size: 2rem;
-}
-
 
 .about-card h3 {
-    margin:
-        0 0 16px;
-
+    margin: 0 0 16px;
     font-size: 1.3rem;
-
-    word-break: keep-all;
 }
-
 
 .about-card p {
     margin: 0;
-
-    color:
-        var(--text-soft);
-
+    color: var(--text-soft);
     word-break: keep-all;
 }
 
-
-/* =====================================================
+/* =========================
    GENERATOR
-===================================================== */
+========================= */
 
 .generator-section {
-    padding:
-        110px 0;
-
-    background:
-        #f3ebdf;
+    padding: 110px 0;
+    background: #f4ede2;
 }
-
 
 .generator-section .section-heading {
-    max-width: 1220px;
+    width: min(1200px, calc(100% - 40px));
 }
 
-
-/*
-   PC에서는 제목 한 줄
-*/
 .generator-section .section-heading h2 {
     white-space: nowrap;
-
     word-break: keep-all;
-
-    overflow-wrap: normal;
 }
-
 
 .step-badge {
     display: inline-flex;
-
     align-items: center;
-
     justify-content: center;
-
     min-height: 32px;
-
     margin-bottom: 16px;
-
-    padding:
-        0 14px;
-
+    padding: 0 14px;
     border-radius: 999px;
-
-    background:
-        #ead3bb;
-
-    color:
-        #865435;
-
+    background: #ead4bd;
+    color: #855535;
     font-size: 0.78rem;
-
     font-weight: 800;
-
     letter-spacing: 0.08em;
 }
 
-
 .generator-container {
-    width:
-        min(
-            1050px,
-            calc(100% - 40px)
-        );
-
-    margin:
-        0 auto;
+    width: min(1050px, calc(100% - 40px));
+    margin: 0 auto;
 }
-
 
 .form-guide {
     margin-bottom: 24px;
-
-    padding:
-        20px 24px;
-
-    border:
-        1px solid
-        var(--line);
-
-    border-radius:
-        var(--radius-medium);
-
-    background:
-        rgba(
-            255,
-            253,
-            249,
-            0.78
-        );
+    padding: 20px 24px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    background: rgba(255, 253, 249, 0.76);
 }
 
-
 .form-guide p {
-    margin:
-        4px 0;
-
-    color:
-        var(--text-soft);
-
+    margin: 4px 0;
+    color: var(--text-soft);
     word-break: keep-all;
 }
 
-
-.form-guide strong,
-.required-mark {
-    color:
-        #b4563e;
-}
-
-
-/* =====================================================
-   FORM
-===================================================== */
-
 #lesson-form {
     padding: 34px;
-
-    border:
-        1px solid
-        var(--line);
-
-    border-radius:
-        var(--radius-large);
-
-    background:
-        var(--card);
-
-    box-shadow:
-        var(--shadow);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: var(--card);
+    box-shadow: var(--shadow);
 }
-
 
 .form-group,
 .choice-fieldset {
-    margin:
-        0 0 24px;
+    margin: 0 0 24px;
 }
-
 
 .form-group label,
 .choice-fieldset legend {
     display: flex;
-
     align-items: center;
-
     gap: 10px;
-
     margin-bottom: 10px;
-
-    color:
-        var(--text);
-
+    color: var(--text);
     font-size: 1.05rem;
-
     font-weight: 700;
-
-    word-break: keep-all;
 }
-
 
 .field-number {
     display: inline-flex;
-
     align-items: center;
-
     justify-content: center;
-
     min-width: 34px;
-
     height: 30px;
-
-    padding:
-        0 8px;
-
+    padding: 0 8px;
     border-radius: 999px;
-
-    background:
-        #f0ddc9;
-
-    color:
-        #925e3d;
-
+    background: #f0dfcc;
+    color: #93603e;
     font-size: 0.8rem;
-
     font-weight: 800;
 }
-
 
 input[type="text"],
 select,
 textarea {
     width: 100%;
-
-    border:
-        1px solid
-        #dec09b;
-
+    border: 1px solid #dfc19b;
     border-radius: 14px;
-
-    background:
-        #fffdf9;
-
-    color:
-        var(--text);
-
+    background: #fffdf9;
+    color: var(--text);
     outline: none;
-
-    transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
 }
-
 
 input[type="text"],
 select {
     min-height: 56px;
-
-    padding:
-        0 16px;
+    padding: 0 16px;
 }
-
 
 textarea {
     min-height: 140px;
-
-    padding:
-        15px 16px;
-
+    padding: 15px 16px;
     resize: vertical;
 }
-
 
 input[type="text"]:focus,
 select:focus,
 textarea:focus {
-    border-color:
-        var(--accent);
-
-    box-shadow:
-        0 0 0 4px
-        rgba(189, 114, 78, 0.1);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(191, 116, 79, 0.1);
 }
-
-
-/* =====================================================
-   CHECKBOX
-===================================================== */
 
 .choice-fieldset {
     min-width: 0;
-
-    padding:
-        22px 24px 24px;
-
-    border:
-        1px solid
-        var(--line);
-
+    padding: 22px 24px 24px;
+    border: 1px solid var(--line);
     border-radius: 18px;
 }
-
-
-.choice-fieldset legend {
-    padding:
-        0 8px;
-}
-
 
 .checkbox-grid {
     display: grid;
-
-    grid-template-columns:
-        repeat(
-            3,
-            minmax(0, 1fr)
-        );
-
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 12px;
-
     margin-bottom: 16px;
 }
 
-
 .checkbox-item {
     min-height: 48px;
-
-    padding:
-        0 14px;
-
+    padding: 0 14px;
     display: flex;
-
     align-items: center;
-
     justify-content: flex-start;
-
     gap: 10px;
-
-    border:
-        1px solid
-        #e4ceb2;
-
+    border: 1px solid #e6d1b5;
     border-radius: 12px;
-
-    background:
-        #fffaf4;
-
+    background: #fffaf4;
     cursor: pointer;
-
-    transition:
-        border-color 0.2s ease,
-        background 0.2s ease,
-        transform 0.2s ease;
 }
-
-
-.checkbox-item:hover {
-    border-color:
-        var(--accent);
-
-    background:
-        #fff6ee;
-
-    transform:
-        translateY(-1px);
-}
-
 
 .checkbox-item input[type="checkbox"] {
     width: 18px;
-
     height: 18px;
-
     margin: 0;
-
-    flex:
-        0 0 auto;
-
-    accent-color:
-        var(--accent);
+    flex: 0 0 auto;
+    accent-color: var(--accent);
 }
-
 
 .checkbox-item span {
-    display: inline-block;
-
     font-weight: 600;
-
     line-height: 1.4;
-
     word-break: keep-all;
 }
-
-
-.method-grid {
-    grid-template-columns:
-        repeat(
-            3,
-            minmax(0, 1fr)
-        );
-}
-
-
-.field-help {
-    margin:
-        8px 2px 0;
-
-    color:
-        #9b8274;
-
-    font-size: 0.88rem;
-
-    word-break: keep-all;
-}
-
-
-/* =====================================================
-   GENERATE BUTTON
-===================================================== */
 
 .generate-button {
     width: 100%;
-
     min-height: 58px;
-
     margin-top: 8px;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     gap: 8px;
-
-    border: 0;
-
     border-radius: 14px;
-
-    background:
-        var(--accent);
-
-    color:
-        #ffffff;
-
+    background: var(--accent);
+    color: #fff;
     font-weight: 800;
-
-    box-shadow:
-        0 9px 22px
-        rgba(189, 114, 78, 0.18);
-
-    transition:
-        transform 0.22s ease,
-        box-shadow 0.22s ease,
-        background 0.22s ease;
+    box-shadow: 0 9px 22px rgba(191, 116, 79, 0.18);
 }
-
-
-/* 보너스 UX */
-.generate-button:hover:not(:disabled) {
-    transform:
-        translateY(-2px);
-
-    background:
-        var(--accent-dark);
-
-    box-shadow:
-        0 14px 28px
-        rgba(189, 114, 78, 0.24);
-}
-
 
 .generate-button:disabled {
     cursor: wait;
-
-    opacity: 0.72;
-
-    transform: none;
+    opacity: 0.75;
 }
 
-
-/* =====================================================
-   FEEDBACK
-===================================================== */
+/* =========================
+   LOADING / ERROR
+========================= */
 
 .feedback-box {
     margin-top: 24px;
-
-    padding:
-        24px 26px;
-
+    padding: 24px 26px;
     border-radius: 18px;
 }
 
-
-/* =====================================================
-   LOADING
-===================================================== */
-
 .loading-box {
-    min-height: 125px;
-
     display: flex;
-
     align-items: center;
-
     gap: 20px;
-
-    border:
-        1px solid
-        #dcc3a3;
-
-    background:
-        #fffaf3;
+    border: 1px solid #ddc5a5;
+    background: #fffaf3;
 }
-
 
 .loading-symbol {
-    width: 54px;
-
-    height: 54px;
-
-    flex:
-        0 0 54px;
-
+    width: 52px;
+    height: 52px;
+    flex: 0 0 52px;
     display: grid;
-
     place-items: center;
-
     border-radius: 50%;
-
-    background:
-        #f0dac4;
-
-    color:
-        var(--accent);
-
-    font-size: 1.7rem;
-
-    animation:
-        musicPulse
-        1.15s
-        ease-in-out
-        infinite;
+    background: #f1ddc7;
+    color: var(--accent);
+    font-size: 1.6rem;
+    animation: musicPulse 1.2s ease-in-out infinite;
 }
 
-
-/* 보너스 마이크로 인터랙션 */
 @keyframes musicPulse {
     0%,
     100% {
-        transform:
-            scale(1)
-            rotate(0deg);
-
-        opacity: 0.7;
+        transform: scale(1);
+        opacity: 0.72;
     }
 
     50% {
-        transform:
-            scale(1.15)
-            rotate(-6deg);
-
+        transform: scale(1.15);
         opacity: 1;
     }
 }
 
-
-.loading-copy {
-    min-width: 0;
-}
-
-
 .loading-copy strong {
     display: block;
-
-    margin-bottom: 8px;
-
+    margin-bottom: 6px;
     font-size: 1.08rem;
-
     word-break: keep-all;
 }
 
+.loading-copy p,
+.loading-copy span {
+    word-break: keep-all;
+}
 
 .loading-copy p {
-    margin:
-        0 0 7px;
-
-    color:
-        var(--text-soft);
-
-    word-break: keep-all;
+    margin: 0 0 6px;
+    color: var(--text-soft);
 }
-
 
 .loading-copy span {
-    display: block;
-
-    color:
-        #9d7d68;
-
+    color: #a4846e;
     font-size: 0.9rem;
-
-    word-break: keep-all;
 }
-
-
-/* =====================================================
-   ERROR
-===================================================== */
 
 .error-box {
-    border:
-        1px solid
-        var(--error-line);
-
-    background:
-        var(--error-bg);
-
-    color:
-        var(--error-text);
+    border: 1px solid var(--error-line);
+    background: var(--error-bg);
+    color: #8f4736;
 }
-
-
-.error-box strong {
-    display: block;
-
-    margin-bottom: 6px;
-}
-
 
 .error-box p {
-    margin: 0;
-
     word-break: keep-all;
 }
 
-
-/* =====================================================
+/* =========================
    RESULT
-===================================================== */
+========================= */
 
 .result-area {
     margin-top: 30px;
-
-    padding: 36px;
-
-    border:
-        1px solid
-        var(--line);
-
-    border-radius:
-        var(--radius-large);
-
-    background:
-        var(--card);
-
-    box-shadow:
-        var(--shadow);
+    padding: 34px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: #fffdf9;
+    box-shadow: var(--shadow);
 }
 
-
-/*
-   보너스 미션:
-   AI 결과 Fade-up
-*/
 .result-area.result-visible {
-    animation:
-        resultFadeUp
-        0.55s
-        ease-out;
+    animation: resultFadeUp 0.55s ease-out;
 }
-
 
 @keyframes resultFadeUp {
     from {
         opacity: 0;
-
-        transform:
-            translateY(18px);
+        transform: translateY(18px);
     }
 
     to {
         opacity: 1;
-
-        transform:
-            translateY(0);
+        transform: translateY(0);
     }
 }
 
-
 .result-header {
     display: flex;
-
     align-items: flex-start;
-
     justify-content: space-between;
-
     gap: 20px;
-
     padding-bottom: 22px;
-
-    border-bottom:
-        1px solid
-        #ead6bd;
+    border-bottom: 1px solid #ead8c1;
 }
-
 
 .result-header h2 {
     margin: 0;
-
-    font-family:
-        "Noto Serif KR",
-        serif;
-
+    font-family: "Noto Serif KR", serif;
     font-size: 2rem;
-
     word-break: keep-all;
 }
-
-
-.result-icon {
-    color:
-        var(--accent);
-
-    font-size: 2rem;
-}
-
 
 .result-guide {
-    margin:
-        20px 0 24px;
-
-    color:
-        var(--text-soft);
-
+    margin: 20px 0;
+    color: var(--text-soft);
     word-break: keep-all;
 }
-
-
-/* =====================================================
-   AI LESSON DOCUMENT
-===================================================== */
 
 .lesson-result {
-    min-height: 220px;
-
-    padding:
-        30px;
-
-    border:
-        1px solid
-        #ead6bc;
-
-    border-radius: 18px;
-
-    background:
-        #fffaf4;
-
-    color:
-        var(--text);
-
+    padding: 8px 6px;
+    color: var(--text);
     line-height: 1.9;
-
     word-break: keep-all;
-
     overflow-wrap: break-word;
 }
 
-
-/*
-   큰 항목 제목
-   예: 1. 수업 제목
-*/
 .lesson-section-title {
-    margin:
-        38px 0 18px;
-
-    padding:
-        0 0 12px;
-
-    border-bottom:
-        1px solid
-        #dfc5a3;
-
-    color:
-        var(--accent-dark);
-
-    font-family:
-        "Noto Serif KR",
-        serif;
-
-    font-size: 1.4rem;
-
-    line-height: 1.5;
-
+    margin: 34px 0 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e5c9a8;
+    color: #9b5f31;
+    font-family: "Noto Serif KR", serif;
+    font-size: 1.45rem;
+    line-height: 1.4;
     word-break: keep-all;
 }
-
 
 .lesson-section-title:first-child {
-    margin-top: 0;
+    margin-top: 6px;
 }
 
-
-/*
-   일반 문장
-*/
 .lesson-paragraph {
-    margin:
-        0 0 14px;
-
-    color:
-        #513b30;
-
+    margin: 0 0 14px;
     font-size: 1rem;
-
     line-height: 1.9;
-
-    word-break: keep-all;
-
-    overflow-wrap: break-word;
-}
-
-
-/*
-   소제목
-*/
-.lesson-subtitle {
-    margin:
-        18px 0 8px;
-
-    color:
-        #8a5b3d;
-
-    font-weight: 800;
-
     word-break: keep-all;
 }
 
-
-/*
-   리스트
-*/
 .lesson-list {
-    margin:
-        6px 0 20px;
-
-    padding-left: 22px;
+    margin: 0 0 20px;
+    padding-left: 28px;
 }
-
 
 .lesson-list li {
-    margin:
-        8px 0;
-
-    padding-left: 3px;
-
+    margin-bottom: 10px;
     line-height: 1.8;
-
     word-break: keep-all;
-
-    overflow-wrap: break-word;
 }
-
-
-/* =====================================================
-   RETRY BUTTON
-===================================================== */
 
 .secondary-button {
-    min-height: 48px;
-
-    margin-top: 22px;
-
-    padding:
-        0 20px;
-
-    border:
-        1px solid
-        #d8b894;
-
+    display: block;
+    min-height: 50px;
+    margin: 28px auto 10px;
+    padding: 0 24px;
+    border: 1px solid #d9b996;
     border-radius: 12px;
-
-    background:
-        #fffaf4;
-
-    color:
-        var(--text);
-
+    background: #fffaf4;
+    color: var(--text);
     font-weight: 700;
-
-    transition:
-        transform 0.2s ease,
-        background 0.2s ease;
 }
-
 
 .secondary-button:hover {
-    transform:
-        translateY(-2px);
-
-    background:
-        #f8ecdd;
+    background: #f5e7d7;
+    box-shadow: 0 8px 18px rgba(103, 68, 43, 0.09);
 }
 
-
-/* =====================================================
+/* =========================
    CONTACT
-===================================================== */
+========================= */
 
 .contact-section {
-    padding:
-        110px 0;
-
-    background:
-        var(--bg-soft);
+    padding: 110px 0;
+    background: var(--bg-soft);
 }
 
-
 .contact-grid {
-    width:
-        min(
-            960px,
-            calc(100% - 40px)
-        );
-
-    margin:
-        0 auto;
-
+    width: min(960px, calc(100% - 40px));
+    margin: 0 auto;
     display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
+    grid-template-columns: repeat(2, 1fr);
     gap: 24px;
 }
 
-
 .contact-card {
-    min-height: 230px;
-
     padding: 34px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    justify-content: center;
-
     text-align: center;
-
-    border:
-        1px solid
-        var(--line);
-
+    border: 1px solid var(--line);
     border-radius: 24px;
-
-    background:
-        var(--card);
-
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
+    background: #fffdf9;
 }
-
-
-/* 보너스 UX */
-.contact-card:hover {
-    transform:
-        translateY(-4px);
-
-    box-shadow:
-        var(--shadow);
-}
-
-
-.contact-icon {
-    margin-bottom: 16px;
-
-    color:
-        var(--accent);
-
-    font-size: 2rem;
-}
-
-
-.contact-card h3 {
-    margin:
-        0 0 12px;
-
-    word-break: keep-all;
-}
-
 
 .contact-card p {
-    margin: 0;
-
-    color:
-        var(--text-soft);
-
     word-break: keep-all;
 }
 
-
-/* =====================================================
+/* =========================
    FOOTER
-===================================================== */
+========================= */
 
 .site-footer {
-    padding:
-        46px 20px;
-
+    padding: 46px 20px;
     text-align: center;
-
-    background:
-        #4c372f;
-
-    color:
-        #fff7ef;
+    background: #4d382f;
+    color: #fff7ef;
 }
 
-
-.footer-notes {
-    margin-bottom: 8px;
-
-    color:
-        #e2b35f;
-
-    font-size: 1.5rem;
-}
-
-
-.site-footer p {
-    margin:
-        0 0 8px;
-
-    opacity: 0.82;
-
-    word-break: keep-all;
-}
-
-
-.site-footer strong {
-    font-size: 0.94rem;
-}
-
-
-/* =====================================================
+/* =========================
    TABLET
-===================================================== */
+========================= */
 
 @media (max-width: 960px) {
 
     .hero-inner {
-        grid-template-columns:
-            1fr;
-
+        grid-template-columns: 1fr;
         gap: 50px;
     }
-
 
     .hero-text {
         text-align: center;
     }
 
-
     .hero-description {
         margin-left: auto;
-
         margin-right: auto;
     }
 
-
     .hero-features,
     .about-grid {
-        grid-template-columns:
-            1fr;
+        grid-template-columns: 1fr;
     }
 
-
-    .feature-card,
-    .about-card {
-        min-height: auto;
+    .checkbox-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-
-    .checkbox-grid,
-    .method-grid {
-        grid-template-columns:
-            repeat(
-                2,
-                minmax(0, 1fr)
-            );
-    }
-
-
-    /*
-       태블릿부터는 제목 자연스럽게
-       두 줄 허용
-    */
     .generator-section .section-heading h2 {
         white-space: normal;
     }
-
 }
 
-
-/* =====================================================
+/* =========================
    MOBILE
-===================================================== */
+========================= */
 
 @media (max-width: 640px) {
 
     .navigation {
-        width:
-            min(
-                100% - 24px,
-                var(--max-width)
-            );
-
-        min-height: auto;
-
-        padding:
-            14px 0;
-
+        width: min(100% - 24px, var(--max-width));
+        padding: 14px 0;
         flex-direction: column;
-
         gap: 12px;
     }
 
-
-    .logo {
-        font-size: 1.3rem;
-    }
-
-
     .nav-menu {
         width: 100%;
-
         justify-content: space-between;
-
         gap: 8px;
     }
-
 
     .nav-menu a {
         font-size: 0.88rem;
     }
 
-
     .hero-section {
-        padding:
-            72px 0 50px;
+        padding: 72px 0 50px;
     }
-
 
     .hero-inner,
     .hero-features,
     .about-grid,
     .generator-container,
-    .contact-grid {
-        width:
-            min(
-                100% - 24px,
-                var(--max-width)
-            );
+    .contact-grid,
+    .section-heading {
+        width: min(100% - 24px, var(--max-width));
     }
-
 
     .hero-text h1 {
-        font-size:
-            clamp(
-                2.6rem,
-                12vw,
-                3.4rem
-            );
-
-        line-height: 1.18;
-
+        font-size: 3rem;
         word-break: keep-all;
     }
-
-
-    .hero-hook {
-        font-size: 1.08rem;
-    }
-
-
-    .music-card {
-        padding: 20px;
-    }
-
 
     .about-section,
     .generator-section,
     .contact-section {
-        padding:
-            76px 0;
+        padding: 76px 0;
     }
-
-
-    .section-heading {
-        width:
-            calc(100% - 24px);
-
-        margin-bottom: 38px;
-    }
-
-
-    .section-heading h2 {
-        font-size:
-            clamp(
-                1.9rem,
-                8vw,
-                2.5rem
-            );
-
-        white-space: normal;
-
-        word-break: keep-all;
-
-        overflow-wrap: normal;
-    }
-
-
-    .section-heading > p:not(.eyebrow) {
-        font-size: 0.98rem;
-
-        line-height: 1.85;
-
-        word-break: keep-all;
-    }
-
 
     #lesson-form {
         padding: 20px;
-
         border-radius: 20px;
     }
-
 
     .choice-fieldset {
         padding: 18px;
     }
 
-
-    .checkbox-grid,
-    .method-grid {
-        grid-template-columns:
-            1fr;
+    .checkbox-grid {
+        grid-template-columns: 1fr;
     }
-
-
-    .checkbox-item {
-        min-height: 46px;
-    }
-
 
     .loading-box {
         align-items: flex-start;
-
         padding: 20px;
     }
-
-
-    .loading-symbol {
-        width: 46px;
-
-        height: 46px;
-
-        flex-basis: 46px;
-
-        font-size: 1.4rem;
-    }
-
 
     .result-area {
-        padding: 22px;
+        padding: 22px 18px;
     }
-
-
-    .result-header {
-        align-items: center;
-    }
-
-
-    .result-header h2 {
-        font-size: 1.65rem;
-    }
-
-
-    .lesson-result {
-        padding: 20px;
-    }
-
 
     .lesson-section-title {
         font-size: 1.22rem;
-
-        margin-top: 30px;
     }
-
 
     .lesson-paragraph,
     .lesson-list li {
-        font-size: 0.96rem;
+        font-size: 0.95rem;
     }
-
 
     .contact-grid {
-        grid-template-columns:
-            1fr;
+        grid-template-columns: 1fr;
     }
-
 }
