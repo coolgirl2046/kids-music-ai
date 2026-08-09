@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <meta
         name="description"
@@ -11,87 +16,151 @@
 
     <title>AI 유아음악 수업안 생성기</title>
 
-    <!-- 웹 폰트 -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
 
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Noto+Sans+KR:wght@400;500;600;700&family=Noto+Serif+KR:wght@500;600;700&display=swap"
         rel="stylesheet"
     >
 
-    <link rel="stylesheet" href="css/style.css">
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
 </head>
+
 
 <body>
 
-    <!-- =========================
+    <!-- =====================================================
          HEADER
-    ========================== -->
-    <header>
-        <nav>
-            <a href="#home" class="logo">
+    ====================================================== -->
+
+    <header class="site-header">
+
+        <nav class="navigation">
+
+            <a
+                href="#home"
+                class="logo"
+            >
                 ♪ Music Lesson AI
             </a>
 
+
             <div class="nav-menu">
-                <a href="#home">홈</a>
-                <a href="#about">소개</a>
-                <a href="#generator">AI 생성</a>
-                <a href="#contact">문의</a>
+
+                <a href="#home">
+                    홈
+                </a>
+
+                <a href="#about">
+                    소개
+                </a>
+
+                <a href="#generator">
+                    AI 생성
+                </a>
+
+                <a href="#contact">
+                    문의
+                </a>
+
             </div>
+
         </nav>
+
     </header>
+
 
 
     <main>
 
-        <!-- =========================
-             HERO
-        ========================== -->
-        <section id="home">
 
-            <div class="music-note note-one" aria-hidden="true">♪</div>
-            <div class="music-note note-two" aria-hidden="true">♫</div>
-            <div class="music-note note-three" aria-hidden="true">♩</div>
+        <!-- =====================================================
+             HOME
+        ====================================================== -->
 
-            <div class="hero-content">
+        <section
+            id="home"
+            class="hero-section"
+        >
+
+            <span
+                class="floating-note note-one"
+                aria-hidden="true"
+            >
+                ♪
+            </span>
+
+            <span
+                class="floating-note note-two"
+                aria-hidden="true"
+            >
+                ♫
+            </span>
+
+
+            <div class="hero-inner">
+
+
+                <!-- 왼쪽 텍스트 -->
 
                 <div class="hero-text">
 
-                    <p class="hero-label">
+                    <p class="eyebrow">
                         MUSIC EDUCATION × AI
                     </p>
+
 
                     <h1>
                         AI 유아음악<br>
                         수업안 생성기
                     </h1>
 
+
                     <p class="hero-hook">
                         매번 새로운 수업안을 고민하고 계신가요?
                     </p>
+
 
                     <p class="hero-target">
                         유치원 · 어린이집 · 유아음악 강사를 위한<br>
                         AI 수업 설계 서비스
                     </p>
 
+
                     <p class="hero-description">
-                        연령, 수업 시간, 음악 개념만 입력하면
-                        실제 수업에 바로 활용할 수 있는
-                        맞춤형 유아음악 수업안을 AI가 생성합니다
+                        연령, 수업 시간, 주제와 음악 개념을 입력하면
+                        실제 수업에 바로 활용할 수 있는 맞춤형
+                        유아음악 수업안을 AI가 생성합니다
                     </p>
 
-                    <a href="#generator" class="hero-button">
+
+                    <a
+                        href="#generator"
+                        class="primary-button"
+                    >
                         ♪ AI 수업안 생성하기
                     </a>
 
                 </div>
 
 
-                <!-- 음악 분위기를 보여주는 CSS 그래픽 -->
-                <div class="hero-visual" aria-hidden="true">
+
+                <!-- 오른쪽 음악 비주얼 -->
+
+                <div
+                    class="hero-visual"
+                    aria-hidden="true"
+                >
 
                     <div class="music-card">
 
@@ -102,30 +171,36 @@
                             </span>
 
                             <div class="staff">
-                                <i></i>
-                                <i></i>
-                                <i></i>
-                                <i></i>
-                                <i></i>
+
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+
                             </div>
 
                             <div class="sheet-notes">
-                                ♪ &nbsp; ♫ &nbsp; ♩
+                                ♪　♫　♩
                             </div>
 
                         </div>
 
+
                         <div class="piano">
-                            <div class="white-key"></div>
-                            <div class="white-key"></div>
-                            <div class="white-key"></div>
-                            <div class="white-key"></div>
-                            <div class="white-key"></div>
-                            <div class="white-key"></div>
-                            <div class="white-key"></div>
+
+                            <span class="white-key"></span>
+                            <span class="white-key"></span>
+                            <span class="white-key"></span>
+                            <span class="white-key"></span>
+                            <span class="white-key"></span>
+                            <span class="white-key"></span>
+                            <span class="white-key"></span>
+
                         </div>
 
-                        <p>
+
+                        <p class="music-card-message">
                             Music makes learning<br>
                             more meaningful
                         </p>
@@ -137,16 +212,24 @@
             </div>
 
 
+
             <!-- 핵심 기능 -->
+
             <div class="hero-features">
+
 
                 <article class="feature-card">
 
-                    <span class="feature-symbol" aria-hidden="true">
+                    <span
+                        class="feature-icon"
+                        aria-hidden="true"
+                    >
                         ♪
                     </span>
 
-                    <h2>연령별 맞춤 수업안</h2>
+                    <h2>
+                        연령별 맞춤 수업안
+                    </h2>
 
                     <p>
                         유아의 발달 수준과 수업 시간에 맞는
@@ -156,13 +239,19 @@
                 </article>
 
 
+
                 <article class="feature-card">
 
-                    <span class="feature-symbol" aria-hidden="true">
+                    <span
+                        class="feature-icon"
+                        aria-hidden="true"
+                    >
                         ♫
                     </span>
 
-                    <h2>클래식 음악 추천</h2>
+                    <h2>
+                        클래식 음악 추천
+                    </h2>
 
                     <p>
                         수업 주제와 활동에 어울리는
@@ -172,102 +261,132 @@
                 </article>
 
 
+
                 <article class="feature-card">
 
-                    <span class="feature-symbol" aria-hidden="true">
+                    <span
+                        class="feature-icon"
+                        aria-hidden="true"
+                    >
                         𝄞
                     </span>
 
-                    <h2>다양한 음악교육 교수법</h2>
+                    <h2>
+                        음악교육 교수법
+                    </h2>
 
                     <p>
                         오르프 · 달크로즈 · 유리드믹스 등
-                        다양한 음악교육 교수법을 반영합니다
+                        다양한 음악교육 접근법을 반영합니다
                     </p>
 
                 </article>
+
 
             </div>
 
         </section>
 
 
-        <!-- =========================
+
+        <!-- =====================================================
              ABOUT
-        ========================== -->
-        <section id="about">
+        ====================================================== -->
 
-            <p class="section-label">
-                ABOUT
-            </p>
+        <section
+            id="about"
+            class="about-section"
+        >
 
-            <h2>
-                음악 수업 준비를 더 쉽게
-            </h2>
+            <div class="section-heading">
 
-            <p class="about-intro">
-                수업 준비에 드는 고민과 시간을 줄이고,
-                더 체계적인 유아음악 수업 설계를 돕습니다
-            </p>
+                <p class="eyebrow">
+                    ABOUT
+                </p>
+
+                <h2>
+                    음악 수업 준비를 더 쉽게
+                </h2>
+
+                <p>
+                    유치원 · 어린이집 교사와 유아음악 강사의
+                    수업 준비 시간을 줄이고
+                    보다 체계적으로 음악 수업을 설계할 수 있도록 돕습니다
+                </p>
+
+            </div>
 
 
-            <div class="about-cards">
+
+            <div class="about-grid">
+
 
                 <article class="about-card">
 
-                    <span class="about-number">
+                    <span class="card-number">
                         01
                     </span>
 
-                    <div class="about-symbol" aria-hidden="true">
-                        ♩
-                    </div>
+                    <span
+                        class="about-icon"
+                        aria-hidden="true"
+                    >
+                        ♪
+                    </span>
 
                     <h3>
                         서비스 목적
                     </h3>
 
                     <p>
-                        매번 새로운 음악 활동을 고민하는
-                        교사의 수업 준비 시간을 줄이고
+                        매번 새로운 음악 활동을 고민하는 교사의
+                        수업 준비 시간을 줄이고
                         체계적인 수업 설계를 돕습니다
                     </p>
 
                 </article>
 
 
+
                 <article class="about-card">
 
-                    <span class="about-number">
+                    <span class="card-number">
                         02
                     </span>
 
-                    <div class="about-symbol" aria-hidden="true">
-                        ♪
-                    </div>
+                    <span
+                        class="about-icon"
+                        aria-hidden="true"
+                    >
+                        ♫
+                    </span>
 
                     <h3>
                         맞춤형 AI 수업 설계
                     </h3>
 
                     <p>
-                        연령, 수업 시간, 주제와 음악 개념을 바탕으로
-                        실제 수업에서 활용할 수 있는
-                        맞춤형 음악 활동을 제안합니다
+                        연령, 시간, 주제와 음악 개념을 바탕으로
+                        실제 수업에 활용할 수 있는
+                        음악 활동을 제안합니다
                     </p>
 
                 </article>
 
 
+
                 <article class="about-card">
 
-                    <span class="about-number">
+                    <span class="card-number">
                         03
                     </span>
 
-                    <div class="about-symbol" aria-hidden="true">
+                    <span
+                        class="about-icon"
+                        aria-hidden="true"
+                    >
                         𝄞
-                    </div>
+                    </span>
 
                     <h3>
                         음악교육 전문성
@@ -275,607 +394,917 @@
 
                     <p>
                         클래식 음악과 오르프 · 달크로즈 · 유리드믹스 등
-                        다양한 음악교육 교수법을
-                        수업 흐름에 자연스럽게 반영합니다
+                        다양한 음악교육 접근법을
+                        실제 수업 흐름에 반영합니다
                     </p>
 
                 </article>
 
+
             </div>
 
         </section>
 
 
-        <!-- =========================
+
+        <!-- =====================================================
              AI GENERATOR
-        ========================== -->
-        <section id="generator">
+        ====================================================== -->
 
-            <p class="section-label">
-                AI LESSON DESIGN
-            </p>
-
-            <div class="step-badge">
-                STEP 1
-            </div>
-
-            <h2>
-                수업 정보를 입력하세요
-            </h2>
-
-            <p class="generator-intro">
-                AI가 연령과 수업 조건에 맞는
-                맞춤형 유아음악 수업안을 설계합니다
-            </p>
+        <section
+            id="generator"
+            class="generator-section"
+        >
 
 
-            <!-- 입력 안내 -->
-            <div class="form-guide">
+            <div class="section-heading">
 
-                <p>
-                    <strong>*</strong>
-                    표시는 필수 입력 항목입니다
+                <p class="eyebrow">
+                    AI LESSON DESIGN
                 </p>
 
+                <span class="step-badge">
+                    STEP 1
+                </span>
+
+                <h2>
+                    나만의 음악 수업안을 만들어보세요
+                </h2>
+
                 <p>
-                    선택 항목을 자세히 입력할수록
-                    더 구체적인 수업안을 만들 수 있습니다
+                    필요한 수업 조건을 입력하면
+                    AI가 실제 현장에서 활용할 수 있는
+                    유아음악 수업안을 설계합니다
                 </p>
 
             </div>
 
 
-            <form id="lesson-form">
 
-                <!-- 01 -->
-                <div class="form-group">
+            <div class="generator-container">
 
-                    <div class="field-title">
-                        <span class="field-number">01</span>
+
+                <div class="form-guide">
+
+                    <p>
+                        <strong>*</strong>
+                        표시는 필수 입력 항목입니다
+                    </p>
+
+                    <p>
+                        선택 항목을 자세히 입력할수록
+                        더 구체적인 수업안을 만들 수 있습니다
+                    </p>
+
+                </div>
+
+
+
+                <form
+                    id="lesson-form"
+                    novalidate
+                >
+
+
+                    <!-- 01 연령 -->
+
+                    <div class="form-group">
 
                         <label for="age">
+
+                            <span class="field-number">
+                                01
+                            </span>
+
                             수업 연령
-                            <span class="required-mark">*</span>
+
+                            <span class="required-mark">
+                                *
+                            </span>
+
                         </label>
+
+
+                        <select
+                            id="age"
+                            name="age"
+                            required
+                        >
+
+                            <option value="">
+                                연령을 선택하세요
+                            </option>
+
+                            <option value="0~2세">
+                                0~2세
+                            </option>
+
+                            <option value="3세">
+                                3세
+                            </option>
+
+                            <option value="4세">
+                                4세
+                            </option>
+
+                            <option value="5세">
+                                5세
+                            </option>
+
+                            <option value="6세 이상">
+                                6세 이상
+                            </option>
+
+                            <option value="통합반">
+                                통합반
+                            </option>
+
+                        </select>
+
                     </div>
 
-                    <select id="age" name="age" required>
-                        <option value="">연령을 선택하세요</option>
-                        <option value="0~2세">0~2세</option>
-                        <option value="3세">3세</option>
-                        <option value="4세">4세</option>
-                        <option value="5세">5세</option>
-                        <option value="6세 이상">6세 이상</option>
-                        <option value="통합반">통합반</option>
-                    </select>
-
-                </div>
 
 
-                <!-- 02 -->
-                <div class="form-group">
+                    <!-- 02 수업 시간 -->
 
-                    <div class="field-title">
-                        <span class="field-number">02</span>
+                    <div class="form-group">
 
                         <label for="lesson-time">
+
+                            <span class="field-number">
+                                02
+                            </span>
+
                             수업 시간
-                            <span class="required-mark">*</span>
+
+                            <span class="required-mark">
+                                *
+                            </span>
+
                         </label>
+
+
+                        <select
+                            id="lesson-time"
+                            name="lessonTime"
+                            required
+                        >
+
+                            <option value="">
+                                수업 시간을 선택하세요
+                            </option>
+
+                            <option value="20분">
+                                20분
+                            </option>
+
+                            <option value="25분">
+                                25분
+                            </option>
+
+                            <option value="30분">
+                                30분
+                            </option>
+
+                            <option value="40분">
+                                40분
+                            </option>
+
+                            <option value="50분">
+                                50분
+                            </option>
+
+                        </select>
+
                     </div>
 
-                    <select
-                        id="lesson-time"
-                        name="lessonTime"
-                        required
-                    >
-                        <option value="">
-                            수업 시간을 선택하세요
-                        </option>
-
-                        <option value="20분">20분</option>
-                        <option value="25분">25분</option>
-                        <option value="30분">30분</option>
-                        <option value="40분">40분</option>
-                        <option value="50분">50분</option>
-                    </select>
-
-                </div>
 
 
-                <!-- 03 -->
-                <div class="form-group">
+                    <!-- 03 수업 주제 -->
 
-                    <div class="field-title">
-                        <span class="field-number">03</span>
+                    <div class="form-group">
 
                         <label for="theme">
+
+                            <span class="field-number">
+                                03
+                            </span>
+
                             수업 주제
-                            <span class="required-mark">*</span>
-                        </label>
-                    </div>
 
-                    <input
-                        type="text"
-                        id="theme"
-                        name="theme"
-                        placeholder="예: 봄, 동물, 바다, 계절"
-                        required
-                    >
+                            <span class="required-mark">
+                                *
+                            </span>
 
-                </div>
-
-
-                <!-- 04 -->
-                <fieldset>
-
-                    <legend>
-                        <span class="field-number">04</span>
-                        ♪ 음악 개념
-                    </legend>
-
-                    <div class="checkbox-group">
-
-                        <label class="check-option">
-                            <input
-                                type="checkbox"
-                                name="musicConcept"
-                                value="리듬"
-                            >
-                            <span>리듬</span>
                         </label>
 
-                        <label class="check-option">
-                            <input
-                                type="checkbox"
-                                name="musicConcept"
-                                value="박자"
-                            >
-                            <span>박자</span>
-                        </label>
 
-                        <label class="check-option">
-                            <input
-                                type="checkbox"
-                                name="musicConcept"
-                                value="빠르기"
-                            >
-                            <span>빠르기</span>
-                        </label>
-
-                        <label class="check-option">
-                            <input
-                                type="checkbox"
-                                name="musicConcept"
-                                value="셈여림"
-                            >
-                            <span>셈여림</span>
-                        </label>
-
-                        <label class="check-option">
-                            <input
-                                type="checkbox"
-                                name="musicConcept"
-                                value="높낮이"
-                            >
-                            <span>높낮이</span>
-                        </label>
-
-                        <label class="check-option">
-                            <input
-                                type="checkbox"
-                                name="musicConcept"
-                                value="음색"
-                            >
-                            <span>음색</span>
-                        </label>
+                        <input
+                            type="text"
+                            id="theme"
+                            name="theme"
+                            placeholder="예: 봄, 동물, 비, 바다"
+                            maxlength="80"
+                            required
+                        >
 
                     </div>
 
-                    <input
-                        type="text"
-                        id="music-concept-other"
-                        name="musicConceptOther"
-                        placeholder="다른 음악 개념이 있다면 직접 입력하세요"
-                    >
-
-                </fieldset>
 
 
-                <!-- 05 -->
-                <fieldset>
+                    <!-- 04 음악 개념 -->
 
-                    <legend>
-                        <span class="field-number">05</span>
-                        ♫ 활동 유형
-                    </legend>
+                    <fieldset class="choice-fieldset">
 
-                    <div class="checkbox-group">
+                        <legend>
 
-                        <label class="check-option">
-                            <input
-                                type="checkbox"
-                                name="activityType"
-                                value="신체 표현"
-                            >
-                            <span>신체 표현</span>
-                        </label>
+                            <span class="field-number">
+                                04
+                            </span>
 
-                        <label class="check-option">
-                            <input
-                                type="checkbox"
-                                name="activityType"
-                                value="악기 연주"
-                            >
-                            <span>악기 연주</span>
-                        </label>
+                            ♪ 음악 개념
 
-                        <label class="check-option">
-                            <input
-                                type="checkbox"
-                                name="activityType"
-                                value="리듬 놀이"
-                            >
-                            <span>리듬 놀이</span>
-                        </label>
-
-                        <label class="check-option">
-                            <input
-                                type="checkbox"
-                                name="activityType"
-                                value="감상 활동"
-                            >
-                            <span>감상 활동</span>
-                        </label>
-
-                        <label class="check-option">
-                            <input
-                                type="checkbox"
-                                name="activityType"
-                                value="창작 활동"
-                            >
-                            <span>창작 활동</span>
-                        </label>
-
-                        <label class="check-option">
-                            <input
-                                type="checkbox"
-                                name="activityType"
-                                value="교구 활동"
-                            >
-                            <span>교구 활동</span>
-                        </label>
-
-                    </div>
-
-                    <input
-                        type="text"
-                        id="activity-type-other"
-                        name="activityTypeOther"
-                        placeholder="다른 활동 유형이 있다면 직접 입력하세요"
-                    >
-
-                </fieldset>
+                        </legend>
 
 
-                <!-- 06 -->
-                <fieldset>
-
-                    <legend>
-                        <span class="field-number">06</span>
-                        𝄞 교육 접근법
-                    </legend>
-
-                    <div class="checkbox-group">
-
-                        <label class="check-option">
-                            <input
-                                type="checkbox"
-                                name="teachingMethod"
-                                value="오르프"
-                            >
-                            <span>오르프</span>
-                        </label>
-
-                        <label class="check-option">
-                            <input
-                                type="checkbox"
-                                name="teachingMethod"
-                                value="달크로즈"
-                            >
-                            <span>달크로즈</span>
-                        </label>
-
-                        <label class="check-option">
-                            <input
-                                type="checkbox"
-                                name="teachingMethod"
-                                value="유리드믹스"
-                            >
-                            <span>유리드믹스</span>
-                        </label>
-
-                    </div>
-
-                </fieldset>
+                        <div class="checkbox-grid">
 
 
-                <!-- 07 -->
-                <div class="form-group">
+                            <label class="checkbox-item">
 
-                    <div class="field-title">
+                                <input
+                                    type="checkbox"
+                                    name="musicConcept"
+                                    value="리듬"
+                                >
 
-                        <span class="field-number">
-                            07
-                        </span>
+                                <span>
+                                    리듬
+                                </span>
+
+                            </label>
+
+
+                            <label class="checkbox-item">
+
+                                <input
+                                    type="checkbox"
+                                    name="musicConcept"
+                                    value="박자"
+                                >
+
+                                <span>
+                                    박자
+                                </span>
+
+                            </label>
+
+
+                            <label class="checkbox-item">
+
+                                <input
+                                    type="checkbox"
+                                    name="musicConcept"
+                                    value="빠르기"
+                                >
+
+                                <span>
+                                    빠르기
+                                </span>
+
+                            </label>
+
+
+                            <label class="checkbox-item">
+
+                                <input
+                                    type="checkbox"
+                                    name="musicConcept"
+                                    value="셈여림"
+                                >
+
+                                <span>
+                                    셈여림
+                                </span>
+
+                            </label>
+
+
+                            <label class="checkbox-item">
+
+                                <input
+                                    type="checkbox"
+                                    name="musicConcept"
+                                    value="높낮이"
+                                >
+
+                                <span>
+                                    높낮이
+                                </span>
+
+                            </label>
+
+
+                            <label class="checkbox-item">
+
+                                <input
+                                    type="checkbox"
+                                    name="musicConcept"
+                                    value="음색"
+                                >
+
+                                <span>
+                                    음색
+                                </span>
+
+                            </label>
+
+                        </div>
+
+
+                        <input
+                            type="text"
+                            id="music-concept-other"
+                            name="musicConceptOther"
+                            placeholder="다른 음악 개념이 있다면 직접 입력하세요"
+                            maxlength="100"
+                        >
+
+                    </fieldset>
+
+
+
+                    <!-- 05 활동 유형 -->
+
+                    <fieldset class="choice-fieldset">
+
+                        <legend>
+
+                            <span class="field-number">
+                                05
+                            </span>
+
+                            ♫ 활동 유형
+
+                        </legend>
+
+
+                        <div class="checkbox-grid">
+
+
+                            <label class="checkbox-item">
+
+                                <input
+                                    type="checkbox"
+                                    name="activityType"
+                                    value="신체 표현"
+                                >
+
+                                <span>
+                                    신체 표현
+                                </span>
+
+                            </label>
+
+
+                            <label class="checkbox-item">
+
+                                <input
+                                    type="checkbox"
+                                    name="activityType"
+                                    value="악기 연주"
+                                >
+
+                                <span>
+                                    악기 연주
+                                </span>
+
+                            </label>
+
+
+                            <label class="checkbox-item">
+
+                                <input
+                                    type="checkbox"
+                                    name="activityType"
+                                    value="리듬 놀이"
+                                >
+
+                                <span>
+                                    리듬 놀이
+                                </span>
+
+                            </label>
+
+
+                            <label class="checkbox-item">
+
+                                <input
+                                    type="checkbox"
+                                    name="activityType"
+                                    value="감상 활동"
+                                >
+
+                                <span>
+                                    감상 활동
+                                </span>
+
+                            </label>
+
+
+                            <label class="checkbox-item">
+
+                                <input
+                                    type="checkbox"
+                                    name="activityType"
+                                    value="창작 활동"
+                                >
+
+                                <span>
+                                    창작 활동
+                                </span>
+
+                            </label>
+
+
+                            <label class="checkbox-item">
+
+                                <input
+                                    type="checkbox"
+                                    name="activityType"
+                                    value="교구 활동"
+                                >
+
+                                <span>
+                                    교구 활동
+                                </span>
+
+                            </label>
+
+
+                        </div>
+
+
+                        <input
+                            type="text"
+                            id="activity-type-other"
+                            name="activityTypeOther"
+                            placeholder="다른 활동 유형이 있다면 직접 입력하세요"
+                            maxlength="100"
+                        >
+
+                    </fieldset>
+
+
+
+                    <!-- 06 교육 접근법 -->
+
+                    <fieldset class="choice-fieldset">
+
+                        <legend>
+
+                            <span class="field-number">
+                                06
+                            </span>
+
+                            𝄞 교육 접근법
+
+                        </legend>
+
+
+                        <div class="checkbox-grid method-grid">
+
+
+                            <label class="checkbox-item">
+
+                                <input
+                                    type="checkbox"
+                                    name="teachingMethod"
+                                    value="오르프"
+                                >
+
+                                <span>
+                                    오르프
+                                </span>
+
+                            </label>
+
+
+                            <label class="checkbox-item">
+
+                                <input
+                                    type="checkbox"
+                                    name="teachingMethod"
+                                    value="달크로즈"
+                                >
+
+                                <span>
+                                    달크로즈
+                                </span>
+
+                            </label>
+
+
+                            <label class="checkbox-item">
+
+                                <input
+                                    type="checkbox"
+                                    name="teachingMethod"
+                                    value="유리드믹스"
+                                >
+
+                                <span>
+                                    유리드믹스
+                                </span>
+
+                            </label>
+
+
+                        </div>
+
+                    </fieldset>
+
+
+
+                    <!-- 07 난이도 -->
+
+                    <div class="form-group">
 
                         <label for="difficulty">
+
+                            <span class="field-number">
+                                07
+                            </span>
+
                             수업 난이도
-                            <span class="required-mark">*</span>
+
+                            <span class="required-mark">
+                                *
+                            </span>
+
                         </label>
+
+
+                        <select
+                            id="difficulty"
+                            name="difficulty"
+                            required
+                        >
+
+                            <option value="">
+                                난이도를 선택하세요
+                            </option>
+
+                            <option value="쉬움">
+                                쉬움
+                            </option>
+
+                            <option value="보통">
+                                보통
+                            </option>
+
+                            <option value="어려움">
+                                어려움
+                            </option>
+
+                        </select>
 
                     </div>
 
-                    <select
-                        id="difficulty"
-                        name="difficulty"
-                        required
-                    >
-                        <option value="">
-                            난이도를 선택하세요
-                        </option>
-
-                        <option value="쉬움">쉬움</option>
-                        <option value="보통">보통</option>
-                        <option value="어려움">어려움</option>
-                    </select>
-
-                </div>
 
 
-                <!-- 08 -->
-                <div class="form-group">
+                    <!-- 08 클래식 -->
 
-                    <div class="field-title">
-
-                        <span class="field-number">
-                            08
-                        </span>
+                    <div class="form-group">
 
                         <label for="classical-music">
+
+                            <span class="field-number">
+                                08
+                            </span>
+
                             클래식 음악
-                            <span class="required-mark">*</span>
+
+                            <span class="required-mark">
+                                *
+                            </span>
+
                         </label>
+
+
+                        <select
+                            id="classical-music"
+                            name="classicalMusic"
+                            required
+                        >
+
+                            <option value="">
+                                선택 방식을 고르세요
+                            </option>
+
+                            <option value="AI 추천">
+                                AI가 수업에 맞게 추천
+                            </option>
+
+                            <option value="직접 입력">
+                                직접 입력
+                            </option>
+
+                        </select>
 
                     </div>
 
-                    <select
-                        id="classical-music"
-                        name="classicalMusic"
-                        required
+
+
+                    <!-- 09 직접 입력 클래식 -->
+
+                    <div
+                        class="form-group"
+                        id="classical-title-group"
                     >
-                        <option value="">
-                            선택 방식을 고르세요
-                        </option>
-
-                        <option value="AI 추천">
-                            AI가 수업에 맞게 추천
-                        </option>
-
-                        <option value="직접 입력">
-                            직접 입력
-                        </option>
-                    </select>
-
-                </div>
-
-
-                <!-- 09 -->
-                <div class="form-group">
-
-                    <div class="field-title">
-
-                        <span class="field-number">
-                            09
-                        </span>
 
                         <label for="classical-title">
+
+                            <span class="field-number">
+                                09
+                            </span>
+
                             원하는 클래식 곡
+
                         </label>
+
+
+                        <input
+                            type="text"
+                            id="classical-title"
+                            name="classicalTitle"
+                            placeholder="직접 입력을 선택한 경우 곡명을 작성하세요"
+                            maxlength="120"
+                        >
+
+                        <p class="field-help">
+                            클래식 음악에서 직접 입력을 선택한 경우 작성해 주세요
+                        </p>
 
                     </div>
 
-                    <input
-                        type="text"
-                        id="classical-title"
-                        name="classicalTitle"
-                        placeholder="직접 입력을 선택한 경우 곡명을 작성하세요"
-                    >
-
-                </div>
 
 
-                <!-- 10 -->
-                <div class="form-group">
+                    <!-- 10 악기/교구 -->
 
-                    <div class="field-title">
-
-                        <span class="field-number">
-                            10
-                        </span>
+                    <div class="form-group">
 
                         <label for="materials">
+
+                            <span class="field-number">
+                                10
+                            </span>
+
                             사용할 악기 또는 교구
+
                         </label>
+
+
+                        <input
+                            type="text"
+                            id="materials"
+                            name="materials"
+                            placeholder="예: 마라카스, 탬버린, 스카프, 리듬막대"
+                            maxlength="150"
+                        >
 
                     </div>
 
-                    <input
-                        type="text"
-                        id="materials"
-                        name="materials"
-                        placeholder="예: 마라카스, 스카프, 리듬막대"
-                    >
-
-                </div>
 
 
-                <!-- 11 -->
-                <div class="form-group">
+                    <!-- 11 추가 요청 -->
 
-                    <div class="field-title">
-
-                        <span class="field-number">
-                            11
-                        </span>
+                    <div class="form-group">
 
                         <label for="request">
+
+                            <span class="field-number">
+                                11
+                            </span>
+
                             추가 요청
+
                         </label>
+
+
+                        <textarea
+                            id="request"
+                            name="request"
+                            rows="5"
+                            maxlength="500"
+                            placeholder="예: 신체 활동을 많이 넣어주세요"
+                        ></textarea>
 
                     </div>
 
-                    <textarea
-                        id="request"
-                        name="request"
-                        rows="5"
-                        placeholder="수업에서 꼭 반영할 내용을 입력하세요"
-                    ></textarea>
-
-                </div>
 
 
-                <button
-                    type="submit"
-                    id="generate-button"
-                >
-                    ♪ AI 수업안 생성하기
-                </button>
+                    <!-- 전송 버튼 -->
 
-            </form>
+                    <button
+                        type="submit"
+                        id="generate-button"
+                        class="generate-button"
+                    >
+
+                        <span
+                            class="button-note"
+                            aria-hidden="true"
+                        >
+                            ♪
+                        </span>
+
+                        <span id="generate-button-text">
+                            AI 수업안 생성하기
+                        </span>
+
+                    </button>
 
 
-            <!-- =========================
-                 LOADING
-                 과제: 지연 상태 사용자 안내
-                 보너스: 마이크로 인터랙션
-            ========================== -->
-            <div
-                id="loading-message"
-                class="loading-box"
-                hidden
-                aria-live="polite"
-            >
+                </form>
+
+
+
+                <!-- =================================================
+                     오류
+                ================================================== -->
 
                 <div
-                    class="loading-note"
-                    aria-hidden="true"
+                    id="error-message"
+                    class="feedback-box error-box"
+                    role="alert"
+                    aria-live="assertive"
+                    hidden
                 >
-                    ♪
+
+                    <strong>
+                        수업안을 생성하지 못했습니다
+                    </strong>
+
+                    <p id="error-text">
+                        입력 내용을 확인한 뒤 다시 시도해 주세요
+                    </p>
+
                 </div>
 
-                <strong>
-                    AI가 수업안을 설계하고 있습니다
-                </strong>
+
+
+                <!-- =================================================
+                     로딩
+                ================================================== -->
+
+                <div
+                    id="loading-message"
+                    class="feedback-box loading-box"
+                    role="status"
+                    aria-live="polite"
+                    hidden
+                >
+
+                    <div
+                        class="loading-symbol"
+                        aria-hidden="true"
+                    >
+                        ♪
+                    </div>
+
+
+                    <div class="loading-copy">
+
+                        <strong>
+                            AI가 수업안을 설계하고 있습니다
+                        </strong>
+
+                        <p>
+                            연령과 수업 조건을 분석하여
+                            음악 활동을 구성하고 있어요
+                        </p>
+
+                        <span id="loading-detail">
+                            잠시만 기다려 주세요
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     결과
+                ================================================== -->
+
+                <section
+                    id="result-area"
+                    class="result-area"
+                    aria-live="polite"
+                    hidden
+                >
+
+
+                    <div class="result-header">
+
+
+                        <div>
+
+                            <p class="eyebrow">
+                                STEP 2 · AI RESULT
+                            </p>
+
+                            <h2>
+                                생성된 음악 수업안
+                            </h2>
+
+                        </div>
+
+
+                        <span
+                            class="result-icon"
+                            aria-hidden="true"
+                        >
+                            𝄞
+                        </span>
+
+
+                    </div>
+
+
+                    <p class="result-guide">
+                        입력한 수업 조건을 바탕으로 AI가 생성한 결과입니다
+                    </p>
+
+
+                    <div
+                        id="lesson-result"
+                        class="lesson-result"
+                    ></div>
+
+
+                    <button
+                        type="button"
+                        id="retry-button"
+                        class="secondary-button"
+                    >
+                        ↻ 다른 수업안 만들기
+                    </button>
+
+
+                </section>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             CONTACT
+        ====================================================== -->
+
+        <section
+            id="contact"
+            class="contact-section"
+        >
+
+            <div class="section-heading">
+
+                <p class="eyebrow">
+                    CONTACT
+                </p>
+
+                <h2>
+                    문의
+                </h2>
 
                 <p>
-                    연령과 수업 조건을 분석하여
-                    음악 활동을 구성하는 중입니다
+                    서비스 이용 중 궁금한 점이나
+                    개선 의견이 있으시면 알려주세요
                 </p>
 
             </div>
 
 
-            <!-- 오류 안내 -->
-            <div
-                id="error-message"
-                class="error-message"
-                role="alert"
-                aria-live="assertive"
-            ></div>
 
+            <div class="contact-grid">
 
-            <!-- =========================
-                 RESULT
-            ========================== -->
-            <section
-                id="result-area"
-                class="result-area"
-                hidden
-            >
-
-                <div class="result-header">
-
-                    <div>
-
-                        <p class="section-label">
-                            STEP 2 · AI RESULT
-                        </p>
-
-                        <h2>
-                            생성된 수업안
-                        </h2>
-
-                    </div>
-
-                    <span class="result-symbol" aria-hidden="true">
-                        𝄞
-                    </span>
-
-                </div>
-
-
-                <p class="result-guide">
-                    입력한 수업 조건을 바탕으로 생성된 결과입니다
-                </p>
-
-
-                <!--
-                    JavaScript에서 AI 결과가 이 영역에 출력됩니다.
-                    ID를 변경하지 마세요.
-                -->
-                <div
-                    id="lesson-result"
-                    class="lesson-result"
-                ></div>
-
-            </section>
-
-        </section>
-
-
-        <!-- =========================
-             CONTACT
-        ========================== -->
-        <section id="contact">
-
-            <p class="section-label">
-                CONTACT
-            </p>
-
-            <h2>
-                문의
-            </h2>
-
-            <p class="contact-intro">
-                서비스 이용 중 궁금한 점이나
-                개선 의견이 있으시면 알려주세요
-            </p>
-
-
-            <div class="contact-box">
 
                 <article class="contact-card">
 
                     <span
-                        class="contact-symbol"
+                        class="contact-icon"
                         aria-hidden="true"
                     >
                         ✉
                     </span>
 
                     <h3>
-                        문의 메일
+                        이메일
                     </h3>
 
                     <p>
@@ -885,58 +1314,65 @@
                 </article>
 
 
+
                 <article class="contact-card">
 
                     <span
-                        class="contact-symbol"
+                        class="contact-icon"
                         aria-hidden="true"
                     >
                         ♪
                     </span>
 
                     <h3>
-                        AI 수업 설계 서비스
+                        서비스
                     </h3>
 
                     <p>
                         유치원 · 어린이집 교사와
                         유아음악 강사를 위한
-                        AI 수업 설계 서비스입니다
+                        AI 수업 설계 서비스
                     </p>
 
                 </article>
+
 
             </div>
 
         </section>
 
+
     </main>
 
 
-    <!-- =========================
+
+    <!-- =====================================================
          FOOTER
-    ========================== -->
-    <footer>
+    ====================================================== -->
+
+    <footer class="site-footer">
 
         <div
-            class="footer-note"
+            class="footer-notes"
             aria-hidden="true"
         >
             ♪ ♫ ♩
         </div>
 
-        <p class="footer-message">
+        <p>
             좋은 수업은 좋은 준비에서 시작됩니다
         </p>
 
-        <p class="footer-copyright">
+        <strong>
             © 2026 AI 유아음악 수업안 생성기
-        </p>
+        </strong>
 
     </footer>
+
 
 
     <script src="js/script.js"></script>
 
 </body>
+
 </html>
