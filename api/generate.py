@@ -7,7 +7,6 @@ from openai import OpenAI
 
 # =====================================================
 # OpenAI 설정
-# API Key는 Vercel 환경 변수에서 가져옵니다
 # =====================================================
 
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
@@ -19,7 +18,7 @@ OPENAI_MODEL = os.environ.get(
 
 
 # =====================================================
-# JSON 응답 함수
+# JSON 응답
 # =====================================================
 
 def make_json_response(handler, status_code, data):
@@ -47,7 +46,7 @@ def make_json_response(handler, status_code, data):
 
 
 # =====================================================
-# 문자열 안전하게 가져오기
+# 문자열 안전 처리
 # =====================================================
 
 def get_text(data, key):
@@ -61,7 +60,7 @@ def get_text(data, key):
 
 
 # =====================================================
-# 리스트 안전하게 가져오기
+# 리스트 안전 처리
 # =====================================================
 
 def get_list(data, key):
@@ -79,23 +78,17 @@ def get_list(data, key):
 
 
 # =====================================================
-# Vercel Python Serverless Function
-# /api/generate
+# Vercel Serverless Function
 # =====================================================
 
 class handler(BaseHTTPRequestHandler):
-
-
-    # -------------------------------------------------
-    # POST 요청
-    # -------------------------------------------------
 
     def do_POST(self):
 
         try:
 
             # =========================================
-            # API Key 확인
+            # API KEY 확인
             # =========================================
 
             if not OPENAI_API_KEY:
@@ -113,7 +106,7 @@ class handler(BaseHTTPRequestHandler):
 
 
             # =========================================
-            # 요청 본문 읽기
+            # 요청 데이터 읽기
             # =========================================
 
             content_length = int(
@@ -122,7 +115,6 @@ class handler(BaseHTTPRequestHandler):
                     0
                 )
             )
-
 
             if content_length <= 0:
 
@@ -164,7 +156,7 @@ class handler(BaseHTTPRequestHandler):
 
 
             # =========================================
-            # 기본 입력값
+            # 기본 입력
             # =========================================
 
             age = get_text(
@@ -194,7 +186,7 @@ class handler(BaseHTTPRequestHandler):
 
 
             # =========================================
-            # 선택 입력값
+            # 선택 입력
             # =========================================
 
             music_concepts = get_list(
@@ -211,7 +203,6 @@ class handler(BaseHTTPRequestHandler):
                 data,
                 "teachingMethods"
             )
-
 
             music_concept_other = get_text(
                 data,
@@ -240,7 +231,7 @@ class handler(BaseHTTPRequestHandler):
 
 
             # =========================================
-            # 필수값 검증
+            # 필수 입력 검증
             # =========================================
 
             if not age:
@@ -331,7 +322,7 @@ class handler(BaseHTTPRequestHandler):
 
 
             # =========================================
-            # 음악 개념 정리
+            # 음악 개념
             # =========================================
 
             if music_concepts:
@@ -355,7 +346,7 @@ class handler(BaseHTTPRequestHandler):
 
 
             # =========================================
-            # 활동 유형 정리
+            # 활동 유형
             # =========================================
 
             if activity_types:
@@ -379,7 +370,7 @@ class handler(BaseHTTPRequestHandler):
 
 
             # =========================================
-            # 교육 접근법 정리
+            # 교수법
             # =========================================
 
             if teaching_methods:
@@ -397,7 +388,7 @@ class handler(BaseHTTPRequestHandler):
 
 
             # =========================================
-            # 클래식 음악 조건
+            # 클래식 음악
             # =========================================
 
             if classical_music == "AI 추천":
@@ -549,15 +540,11 @@ class handler(BaseHTTPRequestHandler):
 
 [반드시 지켜야 할 출력 형식]
 
-
 1. 수업 제목
-
 
 2. 대상 연령
 
-
 3. 전체 수업 시간
-
 
 4. 수업 목표
 
@@ -565,12 +552,9 @@ class handler(BaseHTTPRequestHandler):
 - 목표 2
 - 목표 3
 
-
 5. 핵심 음악 개념
 
-
 6. 준비물
-
 
 7. 활용 클래식 음악
 
@@ -579,13 +563,11 @@ class handler(BaseHTTPRequestHandler):
 - 추천 이유
 - 수업 활용 방법
 
-
 8. 도입
 
 - 예상 시간
 - 교사 진행 방법
 - 유아 활동
-
 
 9. 전개 활동 1
 
@@ -595,7 +577,6 @@ class handler(BaseHTTPRequestHandler):
 - 교사 발문 예시
 - 음악교육적 의미
 
-
 10. 전개 활동 2
 
 - 예상 시간
@@ -604,20 +585,17 @@ class handler(BaseHTTPRequestHandler):
 - 교사 발문 예시
 - 음악교육적 의미
 
-
 11. 마무리
 
 - 예상 시간
 - 활동 방법
 - 유아와 나눌 질문
 
-
 12. 교사 진행 팁
 
 - 난이도 조절 방법
 - 통합반 운영 방법
 - 안전 또는 운영상 주의사항
-
 
 13. 확장 활동
 
@@ -635,13 +613,17 @@ class handler(BaseHTTPRequestHandler):
 
 
             # =========================================
-            # OpenAI API 호출
+            # OpenAI
+            #
+            # 한 번의 요청은 최대 55초 대기
+            # 실패 시 최대 3회 자동 재시도
+            # 최초 요청 포함 최대 4회 시도
             # =========================================
 
             client = OpenAI(
                 api_key=OPENAI_API_KEY,
-                timeout=40.0,
-                max_retries=1
+                timeout=55.0,
+                max_retries=3
             )
 
 
@@ -652,7 +634,7 @@ class handler(BaseHTTPRequestHandler):
 
 
             # =========================================
-            # 결과 가져오기
+            # 결과
             # =========================================
 
             result = response.output_text
@@ -673,10 +655,6 @@ class handler(BaseHTTPRequestHandler):
                 return
 
 
-            # =========================================
-            # 정상 결과
-            # =========================================
-
             make_json_response(
                 self,
                 200,
@@ -687,17 +665,12 @@ class handler(BaseHTTPRequestHandler):
             )
 
 
-        # =============================================
-        # 오류 처리
-        # =============================================
-
         except Exception as error:
 
             print(
                 "AI GENERATION ERROR:",
                 repr(error)
             )
-
 
             make_json_response(
                 self,
@@ -709,10 +682,6 @@ class handler(BaseHTTPRequestHandler):
                 }
             )
 
-
-    # -------------------------------------------------
-    # 잘못된 GET 요청 안내
-    # -------------------------------------------------
 
     def do_GET(self):
 
