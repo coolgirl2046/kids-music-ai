@@ -1,34 +1,22 @@
 :root {
-    --bg: #f7efe4;
+    --bg: #f8f2e9;
     --bg-soft: #fffaf3;
     --card: #fffdf9;
-
-    --line: #e7c9a2;
-
-    --text: #4a3429;
-    --text-soft: #7f6556;
-
-    --accent: #c77950;
+    --line: #e7cfae;
+    --text: #4c3528;
+    --text-soft: #7a6255;
+    --accent: #bf744f;
     --accent-dark: #9f5c3d;
-    --gold: #a86934;
-
+    --gold: #b67a33;
     --error-bg: #fff2ef;
-    --error-line: #df9a86;
-
-    --shadow: 0 14px 38px rgba(89, 59, 40, 0.08);
-    --shadow-hover: 0 22px 46px rgba(89, 59, 40, 0.13);
-
+    --error-line: #e3a28f;
+    --shadow: 0 14px 40px rgba(86, 58, 39, 0.07);
     --radius-lg: 28px;
     --radius-md: 18px;
     --radius-sm: 12px;
-
     --max-width: 1180px;
 }
 
-
-/* =====================================================
-   RESET
-===================================================== */
 
 * {
     box-sizing: border-box;
@@ -42,13 +30,10 @@ html {
 
 body {
     margin: 0;
-
     background: var(--bg);
     color: var(--text);
-
     font-family: "Noto Sans KR", sans-serif;
-
-    line-height: 1.75;
+    line-height: 1.7;
 }
 
 
@@ -60,11 +45,6 @@ textarea {
 }
 
 
-button {
-    color: inherit;
-}
-
-
 a {
     color: inherit;
     text-decoration: none;
@@ -72,9 +52,8 @@ a {
 
 
 img {
-    display: block;
-
     max-width: 100%;
+    display: block;
 }
 
 
@@ -83,47 +62,36 @@ img {
 }
 
 
-/* =====================================================
+/* =========================
    HEADER
-===================================================== */
+========================= */
 
 .site-header {
     position: sticky;
     top: 0;
-
     z-index: 100;
-
-    background: rgba(255, 250, 243, 0.96);
-
+    background: rgba(255, 250, 243, 0.95);
     backdrop-filter: blur(12px);
-
-    border-bottom: 1px solid rgba(170, 118, 72, 0.16);
+    border-bottom: 1px solid rgba(183, 126, 70, 0.18);
 }
 
 
 .navigation {
     width: min(var(--max-width), calc(100% - 40px));
-
     min-height: 76px;
-
     margin: 0 auto;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     gap: 28px;
 }
 
 
 .logo {
     font-family: "Cormorant Garamond", serif;
-
-    font-size: 1.55rem;
+    font-size: 1.5rem;
     font-weight: 700;
-
     color: var(--accent-dark);
-
     white-space: nowrap;
 }
 
@@ -131,17 +99,14 @@ img {
 .nav-menu {
     display: flex;
     align-items: center;
-
     gap: 30px;
 }
 
 
 .nav-menu a {
-    position: relative;
-
     font-size: 0.98rem;
     font-weight: 700;
-
+    color: var(--text);
     transition: color 0.2s ease;
 }
 
@@ -151,9 +116,9 @@ img {
 }
 
 
-/* =====================================================
+/* =========================
    COMMON
-===================================================== */
+========================= */
 
 section {
     scroll-margin-top: 90px;
@@ -161,51 +126,33 @@ section {
 
 
 .section-heading {
-    width: min(1100px, calc(100% - 40px));
-
+    max-width: 760px;
     margin: 0 auto 48px;
-
     text-align: center;
 }
 
 
 .eyebrow {
     margin: 0 0 14px;
-
     color: var(--gold);
-
     font-size: 0.86rem;
     font-weight: 700;
-
     letter-spacing: 0.18em;
 }
 
 
 .section-heading h2 {
     margin: 0 0 18px;
-
     font-family: "Noto Serif KR", serif;
-
     font-size: clamp(2rem, 4vw, 3.2rem);
-
     line-height: 1.3;
-
-    word-break: keep-all;
-    overflow-wrap: normal;
 }
 
 
-.section-heading > p:not(.eyebrow) {
-    max-width: 1000px;
-
-    margin: 0 auto;
-
+.section-heading p {
+    margin: 0;
     color: var(--text-soft);
-
     font-size: 1.04rem;
-
-    word-break: keep-all;
-    overflow-wrap: break-word;
 }
 
 
@@ -213,13 +160,11 @@ section {
 .generate-button,
 .secondary-button {
     border: 0;
-
     cursor: pointer;
-
     transition:
-        transform 0.22s ease,
-        box-shadow 0.22s ease,
-        background 0.22s ease;
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 
@@ -230,107 +175,60 @@ section {
 }
 
 
-/* =====================================================
+/* =========================
    HERO
-===================================================== */
+========================= */
 
 .hero-section {
     position: relative;
-
     overflow: hidden;
-
     padding: 100px 0 70px;
-
     background:
-        radial-gradient(
-            circle at 12% 20%,
-            rgba(219, 189, 146, 0.12),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 85% 30%,
-            rgba(204, 149, 104, 0.08),
-            transparent 35%
-        ),
+        radial-gradient(circle at 12% 20%, rgba(219, 189, 146, 0.12), transparent 30%),
+        radial-gradient(circle at 85% 30%, rgba(204, 149, 104, 0.08), transparent 35%),
         var(--bg);
 }
 
 
 .hero-inner {
     width: min(var(--max-width), calc(100% - 40px));
-
     margin: 0 auto;
-
     display: grid;
-
-    grid-template-columns:
-        minmax(0, 1.05fr)
-        minmax(360px, 0.95fr);
-
+    grid-template-columns: 1.05fr 0.95fr;
     align-items: center;
-
     gap: 70px;
-}
-
-
-/* -------------------------
-   HERO TEXT
-------------------------- */
-
-.hero-text {
-    min-width: 0;
 }
 
 
 .hero-text h1 {
     margin: 0 0 24px;
-
     font-family: "Noto Serif KR", serif;
-
-    font-size: clamp(3rem, 5.6vw, 5.25rem);
-
-    line-height: 1.13;
-
-    letter-spacing: -0.045em;
-
-    word-break: keep-all;
-    overflow-wrap: normal;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    line-height: 1.12;
+    letter-spacing: -0.05em;
 }
 
 
 .hero-hook {
     margin: 0 0 18px;
-
     font-size: 1.3rem;
     font-weight: 700;
-
-    word-break: keep-all;
 }
 
 
 .hero-target {
     margin: 0 0 22px;
-
     color: #8f562f;
-
     font-size: 1.12rem;
     font-weight: 700;
-
-    word-break: keep-all;
 }
 
 
 .hero-description {
     max-width: 650px;
-
     margin: 0 0 32px;
-
     color: var(--text-soft);
-
     font-size: 1.05rem;
-
-    word-break: keep-all;
-    overflow-wrap: break-word;
 }
 
 
@@ -338,206 +236,96 @@ section {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-
     min-height: 56px;
-
     padding: 0 28px;
-
     border-radius: 999px;
-
     background: var(--accent);
-
     color: #fff;
-
     font-weight: 700;
-
-    box-shadow:
-        0 10px 24px rgba(191, 116, 79, 0.22);
+    box-shadow: 0 10px 24px rgba(191, 116, 79, 0.22);
 }
 
-
-.primary-button:hover {
-    background: var(--accent-dark);
-
-    box-shadow:
-        0 14px 30px rgba(191, 116, 79, 0.28);
-}
-
-
-/* =====================================================
-   HERO MUSIC CARD
-   피아노 + 오선보
-===================================================== */
 
 .hero-visual {
     display: flex;
-    align-items: center;
     justify-content: center;
-
-    width: 100%;
 }
 
 
 .music-card {
-    position: relative;
-
     width: min(100%, 460px);
-
     padding: 32px;
-
-    background: rgba(255, 253, 249, 0.96);
-
-    border: 1px solid #e6d2b5;
-    border-radius: 30px;
-
-    box-shadow:
-        0 20px 50px rgba(91, 61, 41, 0.12);
-
+    border: 1px solid var(--line);
+    border-radius: 32px;
+    background: rgba(255, 253, 249, 0.92);
+    box-shadow: var(--shadow);
     transform: rotate(1.5deg);
-
-    transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
 }
 
-
-.music-card:hover {
-    transform:
-        rotate(0deg)
-        translateY(-4px);
-
-    box-shadow:
-        0 26px 60px rgba(91, 61, 41, 0.16);
-}
-
-
-/* -------------------------
-   오선보 카드
-------------------------- */
 
 .music-sheet {
     position: relative;
-
-    min-height: 180px;
-
-    padding: 25px;
-
-    overflow: hidden;
-
-    background: #fff8ec;
-
-    border: 1px solid #ead7ba;
-    border-radius: 20px;
+    min-height: 170px;
+    padding: 24px;
+    border: 1px solid #edd8ba;
+    border-radius: 22px;
+    background: #fffaf2;
 }
 
 
 .treble-clef {
     position: absolute;
-
-    left: 24px;
-    top: 18px;
-
-    z-index: 2;
-
-    color: #87593b;
-
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
-    font-size: 48px;
-
+    left: 22px;
+    top: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    font-family: "Segoe UI Symbol", "Arial Unicode MS", sans-serif;
+    font-size: 2.4rem;
     line-height: 1;
+    color: #8f5e3c;
 }
 
 
-/* 오선 */
-
 .staff {
-    position: relative;
-
-    width: calc(100% - 72px);
-
-    margin:
-        60px 0
-        0 72px;
+    margin-top: 55px;
 }
 
 
 .staff span {
     display: block;
-
-    width: 100%;
     height: 1px;
-
     margin: 10px 0;
-
-    background: #b89473;
+    background: #b8916f;
 }
 
-
-/* 오선보 위 음표 */
 
 .sheet-notes {
-    position: absolute;
-
-    left: 115px;
-    top: 72px;
-
-    color: #815338;
-
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
-    font-size: 27px;
-
-    letter-spacing: 8px;
+    margin-top: -38px;
+    text-align: center;
+    font-size: 1.6rem;
+    color: #915a37;
 }
 
 
-/* -------------------------
-   PIANO
-------------------------- */
-
 .piano {
-    position: relative;
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(7, 1fr);
-
-    width: 100%;
     height: 118px;
-
     margin-top: 26px;
-
-    overflow: hidden;
-
-    background: #fff;
-
-    border: 2px solid #5b4437;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    border: 2px solid #604636;
     border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
 }
 
 
 .white-key {
     position: relative;
-
-    min-width: 0;
-
-    background:
-        linear-gradient(
-            to bottom,
-            #ffffff,
-            #fffaf3
-        );
-
-    border-right:
-        1px solid #9f8b7c;
+    border-right: 1px solid #b9a28d;
+    background: #fffdf9;
 }
 
 
@@ -546,77 +334,41 @@ section {
 }
 
 
-/* 검은 건반 */
-
 .white-key:nth-child(2)::before,
 .white-key:nth-child(3)::before,
 .white-key:nth-child(5)::before,
 .white-key:nth-child(6)::before,
 .white-key:nth-child(7)::before {
     content: "";
-
     position: absolute;
-
-    left: -20%;
     top: 0;
-
-    z-index: 3;
-
-    width: 40%;
-    height: 63%;
-
-    background:
-        linear-gradient(
-            to bottom,
-            #3f3029,
-            #594236
-        );
-
-    border-radius:
-        0 0 4px 4px;
-
-    box-shadow:
-        0 3px 4px rgba(0, 0, 0, 0.18);
+    left: -18%;
+    width: 36%;
+    height: 64%;
+    background: #49352c;
 }
 
 
 .music-card-message {
-    margin: 26px 0 2px;
-
+    margin: 28px 0 0;
     text-align: center;
-
-    color: #80624f;
-
-    font-family:
-        "Cormorant Garamond",
-        serif;
-
-    font-size: 1.28rem;
-    font-weight: 600;
-
-    line-height: 1.35;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.25rem;
+    color: #825b42;
 }
 
 
-/* -------------------------
-   FLOATING NOTES
-------------------------- */
-
 .floating-note {
     position: absolute;
-
-    pointer-events: none;
-
-    color:
-        rgba(164, 105, 64, 0.07);
-
     font-size: 6rem;
+    color: rgba(166, 112, 67, 0.08);
+    pointer-events: none;
 }
 
 
 .note-one {
     left: 4%;
-    top: 22%;
+    top: 20%;
 }
 
 
@@ -626,210 +378,129 @@ section {
 }
 
 
-/* =====================================================
-   HERO FEATURE CARDS
-===================================================== */
-
 .hero-features {
     width: min(var(--max-width), calc(100% - 40px));
-
     margin: 72px auto 0;
-
     display: grid;
-
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-
+    grid-template-columns: repeat(3, 1fr);
     gap: 22px;
 }
 
 
 .feature-card {
     min-height: 220px;
-
     padding: 30px;
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     border: 1px solid var(--line);
     border-radius: 24px;
-
-    background:
-        rgba(255, 253, 249, 0.78);
-
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
-}
-
-
-.feature-card:hover {
-    transform: translateY(-4px);
-
-    box-shadow: var(--shadow-hover);
+    background: rgba(255, 253, 249, 0.72);
 }
 
 
 .feature-icon {
-    display: inline-block;
-
-    margin-bottom: 18px;
-
-    color: var(--accent);
-
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    margin-bottom: 16px;
     font-size: 2rem;
+    line-height: 1;
+    color: var(--accent);
 }
 
 
 .feature-card h2 {
     margin: 0 0 14px;
-
     font-size: 1.24rem;
-
-    word-break: keep-all;
 }
 
 
 .feature-card p {
     margin: 0;
-
     color: var(--text-soft);
-
-    word-break: keep-all;
-    overflow-wrap: break-word;
 }
 
 
-/* =====================================================
+/* =========================
    ABOUT
-===================================================== */
+========================= */
 
 .about-section {
     padding: 110px 0;
-
     background: var(--bg-soft);
-}
-
-
-.about-section .section-heading {
-    max-width: 1100px;
-}
-
-
-.about-section .section-heading > p:not(.eyebrow) {
-    max-width: 1000px;
 }
 
 
 .about-grid {
     width: min(var(--max-width), calc(100% - 40px));
-
     margin: 0 auto;
-
     display: grid;
-
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-
+    grid-template-columns: repeat(3, 1fr);
     gap: 24px;
 }
 
 
 .about-card {
     position: relative;
-
-    min-height: 320px;
-
-    padding: 34px;
-
+    min-height: 300px;
+    padding: 34px 42px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     border: 1px solid var(--line);
     border-radius: 24px;
-
     background: #fffdf9;
-
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
-}
-
-
-.about-card:hover {
-    transform: translateY(-4px);
-
-    box-shadow: var(--shadow-hover);
 }
 
 
 .card-number {
     position: absolute;
-
     right: 28px;
     top: 22px;
-
-    color:
-        rgba(142, 102, 67, 0.16);
-
-    font-family:
-        "Cormorant Garamond",
-        serif;
-
+    font-family: "Cormorant Garamond", serif;
     font-size: 2.2rem;
     font-weight: 700;
+    color: rgba(142, 102, 67, 0.16);
 }
 
 
 .about-icon {
-    display: inline-block;
-
-    margin-bottom: 28px;
-
-    color: var(--accent);
-
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    margin-bottom: 22px;
     font-size: 2rem;
+    line-height: 1;
+    color: var(--accent);
 }
 
 
 .about-card h3 {
     margin: 0 0 16px;
-
     font-size: 1.3rem;
-
-    word-break: keep-all;
 }
 
 
 .about-card p {
     margin: 0;
-
     color: var(--text-soft);
-
-    word-break: keep-all;
-    overflow-wrap: break-word;
 }
 
 
-/* =====================================================
+/* =========================
    GENERATOR
-===================================================== */
+========================= */
 
 .generator-section {
     padding: 110px 0;
-
     background: #f4ede2;
-}
-
-
-.generator-section .section-heading {
-    width: min(1200px, calc(100% - 40px));
-
-    max-width: 1200px;
-}
-
-
-/* PC에서는 제목 한 줄 */
-
-.generator-section .section-heading h2 {
-    white-space: nowrap;
-
-    word-break: keep-all;
 }
 
 
@@ -837,56 +508,36 @@ section {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-
     min-height: 32px;
-
     margin-bottom: 16px;
-
     padding: 0 14px;
-
     border-radius: 999px;
-
     background: #ead4bd;
-
     color: #855535;
-
     font-size: 0.78rem;
     font-weight: 800;
-
     letter-spacing: 0.08em;
 }
 
 
 .generator-container {
     width: min(1050px, calc(100% - 40px));
-
     margin: 0 auto;
 }
 
 
-/* -------------------------
-   GUIDE
-------------------------- */
-
 .form-guide {
     margin-bottom: 24px;
-
     padding: 20px 24px;
-
     border: 1px solid var(--line);
     border-radius: var(--radius-md);
-
-    background:
-        rgba(255, 253, 249, 0.76);
+    background: rgba(255, 253, 249, 0.74);
 }
 
 
 .form-guide p {
     margin: 4px 0;
-
     color: var(--text-soft);
-
-    word-break: keep-all;
 }
 
 
@@ -896,25 +547,18 @@ section {
 }
 
 
-/* -------------------------
-   FORM
-------------------------- */
-
 #lesson-form {
-    padding: 34px;
-
+    padding: 30px;
     border: 1px solid var(--line);
     border-radius: var(--radius-lg);
-
     background: var(--card);
-
     box-shadow: var(--shadow);
 }
 
 
 .form-group,
 .choice-fieldset {
-    margin: 0 0 24px;
+    margin: 0 0 18px;
 }
 
 
@@ -922,17 +566,11 @@ section {
 .choice-fieldset legend {
     display: flex;
     align-items: center;
-
     gap: 10px;
-
     margin-bottom: 10px;
-
     color: var(--text);
-
     font-size: 1.05rem;
     font-weight: 700;
-
-    word-break: keep-all;
 }
 
 
@@ -940,18 +578,12 @@ section {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-
     min-width: 34px;
     height: 30px;
-
     padding: 0 8px;
-
     border-radius: 999px;
-
     background: #f0dfcc;
-
     color: #93603e;
-
     font-size: 0.8rem;
     font-weight: 800;
 }
@@ -961,16 +593,11 @@ input[type="text"],
 select,
 textarea {
     width: 100%;
-
     border: 1px solid #dfc19b;
     border-radius: 14px;
-
     background: #fffdf9;
-
     color: var(--text);
-
     outline: none;
-
     transition:
         border-color 0.2s ease,
         box-shadow 0.2s ease;
@@ -979,17 +606,14 @@ textarea {
 
 input[type="text"],
 select {
-    min-height: 56px;
-
+    min-height: 52px;
     padding: 0 16px;
 }
 
 
 textarea {
-    min-height: 140px;
-
+    min-height: 120px;
     padding: 15px 16px;
-
     resize: vertical;
 }
 
@@ -998,33 +622,13 @@ input[type="text"]:focus,
 select:focus,
 textarea:focus {
     border-color: var(--accent);
-
-    box-shadow:
-        0 0 0 4px
-        rgba(191, 116, 79, 0.1);
+    box-shadow: 0 0 0 4px rgba(191, 116, 79, 0.1);
 }
 
-
-.field-help {
-    margin: 8px 2px 0;
-
-    color: #9b8475;
-
-    font-size: 0.88rem;
-
-    word-break: keep-all;
-}
-
-
-/* =====================================================
-   CHECKBOX
-===================================================== */
 
 .choice-fieldset {
     min-width: 0;
-
-    padding: 22px 24px 24px;
-
+    padding: 18px 20px 20px;
     border: 1px solid var(--line);
     border-radius: 18px;
 }
@@ -1037,124 +641,73 @@ textarea:focus {
 
 .checkbox-grid {
     display: grid;
-
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 12px;
-
     margin-bottom: 16px;
 }
 
 
 .checkbox-item {
-    min-height: 48px;
-
+    min-height: 46px;
     padding: 0 14px;
-
     display: flex;
     align-items: center;
     justify-content: flex-start;
-
     gap: 10px;
-
     border: 1px solid #e6d1b5;
     border-radius: 12px;
-
     background: #fffaf4;
-
     cursor: pointer;
-
-    transition:
-        border-color 0.2s ease,
-        background 0.2s ease,
-        transform 0.2s ease;
-}
-
-
-.checkbox-item:hover {
-    border-color: #c9956d;
-
-    background: #fff5e9;
-
-    transform: translateY(-1px);
 }
 
 
 .checkbox-item input[type="checkbox"] {
     width: 18px;
     height: 18px;
-
     margin: 0;
-
     flex: 0 0 auto;
-
     accent-color: var(--accent);
 }
 
 
 .checkbox-item span {
     display: inline-block;
-
     font-weight: 600;
-
     line-height: 1.4;
-
-    word-break: keep-all;
 }
 
 
 .method-grid {
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 
-/* =====================================================
-   GENERATE BUTTON
-===================================================== */
+.field-help {
+    margin: 8px 2px 0;
+    color: #9b8475;
+    font-size: 0.88rem;
+}
+
 
 .generate-button {
     width: 100%;
-
-    min-height: 58px;
-
+    min-height: 56px;
     margin-top: 8px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     gap: 8px;
-
     border-radius: 14px;
-
     background: var(--accent);
-
     color: #fff;
-
     font-weight: 800;
-
-    box-shadow:
-        0 9px 22px
-        rgba(191, 116, 79, 0.18);
-}
-
-
-.generate-button:hover {
-    background: var(--accent-dark);
-
-    box-shadow:
-        0 13px 28px
-        rgba(191, 116, 79, 0.24);
+    box-shadow: 0 9px 22px rgba(191, 116, 79, 0.18);
 }
 
 
 .generate-button:disabled {
     cursor: wait;
-
-    opacity: 0.75;
-
+    opacity: 0.72;
     transform: none;
 }
 
@@ -1164,34 +717,23 @@ textarea:focus {
 }
 
 
-/* =====================================================
-   FEEDBACK COMMON
-===================================================== */
+/* =========================
+   FEEDBACK
+========================= */
 
 .feedback-box {
     margin-top: 24px;
-
     padding: 24px 26px;
-
     border-radius: 18px;
 }
 
 
-/* =====================================================
-   LOADING
-   보너스 마이크로 인터랙션
-===================================================== */
-
 .loading-box {
     min-height: 120px;
-
     display: flex;
     align-items: center;
-
     gap: 20px;
-
     border: 1px solid #ddc5a5;
-
     background: #fffaf3;
 }
 
@@ -1199,145 +741,79 @@ textarea:focus {
 .loading-symbol {
     width: 52px;
     height: 52px;
-
     flex: 0 0 52px;
-
     display: grid;
     place-items: center;
-
     border-radius: 50%;
-
     background: #f1ddc7;
-
     color: var(--accent);
-
     font-size: 1.6rem;
-
-    animation:
-        musicPulse
-        1.2s
-        ease-in-out
-        infinite;
+    animation: pulseNote 1.2s ease-in-out infinite;
 }
 
 
 .loading-copy strong {
     display: block;
-
     margin-bottom: 6px;
-
     font-size: 1.08rem;
-
-    word-break: keep-all;
 }
 
 
 .loading-copy p {
-    margin: 0 0 6px;
-
+    margin: 0 0 5px;
     color: var(--text-soft);
-
-    word-break: keep-all;
-    overflow-wrap: break-word;
 }
 
 
 .loading-copy span {
     color: #a4846e;
-
     font-size: 0.9rem;
-
-    word-break: keep-all;
 }
 
 
-@keyframes musicPulse {
+@keyframes pulseNote {
     0%,
     100% {
         transform: scale(1);
-
         opacity: 0.72;
     }
 
     50% {
-        transform:
-            scale(1.16)
-            rotate(-6deg);
-
+        transform: scale(1.12);
         opacity: 1;
     }
 }
 
 
-/* =====================================================
-   ERROR
-===================================================== */
-
 .error-box {
     border: 1px solid var(--error-line);
-
     background: var(--error-bg);
-
     color: #8f4736;
 }
 
 
 .error-box strong {
     display: block;
-
     margin-bottom: 6px;
 }
 
 
 .error-box p {
     margin: 0;
-
-    word-break: keep-all;
 }
 
 
-/* =====================================================
-   RESULT AREA
-===================================================== */
+/* =========================
+   RESULT
+========================= */
 
 .result-area {
     margin-top: 30px;
-
     padding: 34px;
-
     border: 1px solid var(--line);
     border-radius: var(--radius-lg);
-
     background: #fffdf9;
-
     box-shadow: var(--shadow);
-}
-
-
-/* 보너스 미션 */
-
-.result-area.result-visible {
-    animation:
-        resultFadeUp
-        0.55s
-        ease-out;
-}
-
-
-@keyframes resultFadeUp {
-    from {
-        opacity: 0;
-
-        transform:
-            translateY(18px);
-    }
-
-    to {
-        opacity: 1;
-
-        transform:
-            translateY(0);
-    }
 }
 
 
@@ -1345,284 +821,128 @@ textarea:focus {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-
     gap: 20px;
-
     padding-bottom: 22px;
-
-    border-bottom:
-        1px solid #ead8c1;
+    border-bottom: 1px solid #ead8c1;
 }
 
 
 .result-header h2 {
     margin: 0;
-
-    font-family:
-        "Noto Serif KR",
-        serif;
-
+    font-family: "Noto Serif KR", serif;
     font-size: 2rem;
-
-    word-break: keep-all;
 }
 
 
 .result-icon {
-    color: var(--accent);
-
     font-size: 2rem;
+    color: var(--accent);
 }
 
 
 .result-guide {
     margin: 20px 0;
-
     color: var(--text-soft);
-
-    word-break: keep-all;
 }
 
-
-/* =====================================================
-   AI LESSON RESULT
-   Markdown처럼 보이지 않도록 JS 결과 스타일링
-===================================================== */
 
 .lesson-result {
     min-height: 220px;
-
-    padding: 8px 6px;
-
-    color: var(--text);
-
+    padding: 24px;
+    border: 1px solid #ead7bd;
+    border-radius: 16px;
+    background: #fffaf4;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
     line-height: 1.85;
-
-    word-break: keep-all;
-    overflow-wrap: break-word;
 }
 
-
-.lesson-section-title {
-    margin:
-        34px 0 16px;
-
-    padding-bottom: 11px;
-
-    color: #965c32;
-
-    border-bottom:
-        1px solid #e5c9a8;
-
-    font-family:
-        "Noto Serif KR",
-        serif;
-
-    font-size: 1.42rem;
-    font-weight: 700;
-
-    line-height: 1.45;
-
-    word-break: keep-all;
-}
-
-
-.lesson-section-title:first-child {
-    margin-top: 4px;
-}
-
-
-.lesson-subtitle {
-    margin:
-        18px 0 7px;
-
-    color: #6f4a35;
-
-    font-weight: 700;
-
-    word-break: keep-all;
-}
-
-
-.lesson-paragraph {
-    margin:
-        0 0 13px;
-
-    font-size: 1rem;
-
-    line-height: 1.85;
-
-    word-break: keep-all;
-    overflow-wrap: break-word;
-}
-
-
-.lesson-list {
-    margin:
-        5px 0 22px;
-
-    padding-left: 26px;
-}
-
-
-.lesson-list li {
-    margin-bottom: 8px;
-
-    line-height: 1.8;
-
-    word-break: keep-all;
-    overflow-wrap: break-word;
-}
-
-
-/* =====================================================
-   RETRY BUTTON
-===================================================== */
 
 .secondary-button {
-    display: block;
-
-    min-height: 50px;
-
-    margin:
-        28px auto 8px;
-
-    padding:
-        0 24px;
-
-    border:
-        1px solid #d9b996;
-
+    min-height: 48px;
+    margin-top: 20px;
+    padding: 0 20px;
+    border: 1px solid #d9b996;
     border-radius: 12px;
-
     background: #fffaf4;
-
     color: var(--text);
-
     font-weight: 700;
 }
 
 
-.secondary-button:hover {
-    background: #f5e7d7;
-
-    box-shadow:
-        0 8px 18px
-        rgba(103, 68, 43, 0.09);
-}
-
-
-/* =====================================================
+/* =========================
    CONTACT
-===================================================== */
+========================= */
 
 .contact-section {
     padding: 110px 0;
-
     background: var(--bg-soft);
 }
 
 
 .contact-grid {
     width: min(960px, calc(100% - 40px));
-
     margin: 0 auto;
-
     display: grid;
-
-    grid-template-columns:
-        repeat(2, minmax(0, 1fr));
-
+    grid-template-columns: repeat(2, 1fr);
     gap: 24px;
 }
 
 
 .contact-card {
     min-height: 230px;
-
     padding: 34px;
-
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-
+    align-items: center;
     text-align: center;
-
     border: 1px solid var(--line);
     border-radius: 24px;
-
     background: #fffdf9;
-
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
-}
-
-
-.contact-card:hover {
-    transform: translateY(-4px);
-
-    box-shadow: var(--shadow-hover);
 }
 
 
 .contact-icon {
     margin-bottom: 16px;
-
-    color: var(--accent);
-
     font-size: 2rem;
+    color: var(--accent);
 }
 
 
 .contact-card h3 {
     margin: 0 0 12px;
-
-    word-break: keep-all;
 }
 
 
 .contact-card p {
     margin: 0;
-
     color: var(--text-soft);
-
-    word-break: keep-all;
-    overflow-wrap: break-word;
 }
 
 
-/* =====================================================
+/* =========================
    FOOTER
-===================================================== */
+========================= */
 
 .site-footer {
     padding: 46px 20px;
-
     text-align: center;
-
     background: #4d382f;
-
     color: #fff7ef;
 }
 
 
 .footer-notes {
     margin-bottom: 8px;
-
     color: #e6b766;
-
     font-size: 1.5rem;
 }
 
 
 .site-footer p {
     margin: 0 0 8px;
-
     opacity: 0.82;
-
-    word-break: keep-all;
 }
 
 
@@ -1631,15 +951,14 @@ textarea:focus {
 }
 
 
-/* =====================================================
+/* =========================
    TABLET
-===================================================== */
+========================= */
 
 @media (max-width: 960px) {
 
     .hero-inner {
         grid-template-columns: 1fr;
-
         gap: 50px;
     }
 
@@ -1652,16 +971,6 @@ textarea:focus {
     .hero-description {
         margin-left: auto;
         margin-right: auto;
-    }
-
-
-    .hero-visual {
-        margin-top: 16px;
-    }
-
-
-    .music-card {
-        transform: none;
     }
 
 
@@ -1679,37 +988,23 @@ textarea:focus {
 
     .checkbox-grid,
     .method-grid {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-
-    .generator-section
-    .section-heading h2 {
-        white-space: normal;
-    }
 }
 
 
-/* =====================================================
+/* =========================
    MOBILE
-===================================================== */
+========================= */
 
 @media (max-width: 640px) {
 
     .navigation {
-        width:
-            min(
-                calc(100% - 24px),
-                var(--max-width)
-            );
-
+        width: min(100% - 24px, var(--max-width));
         min-height: auto;
-
         padding: 14px 0;
-
         flex-direction: column;
-
         gap: 12px;
     }
 
@@ -1721,9 +1016,7 @@ textarea:focus {
 
     .nav-menu {
         width: 100%;
-
         justify-content: space-between;
-
         gap: 8px;
     }
 
@@ -1742,21 +1035,13 @@ textarea:focus {
     .hero-features,
     .about-grid,
     .generator-container,
-    .contact-grid,
-    .section-heading {
-        width:
-            min(
-                calc(100% - 24px),
-                var(--max-width)
-            );
+    .contact-grid {
+        width: min(100% - 24px, var(--max-width));
     }
 
 
     .hero-text h1 {
         font-size: 3rem;
-
-        word-break: keep-all;
-        overflow-wrap: normal;
     }
 
 
@@ -1765,90 +1050,10 @@ textarea:focus {
     }
 
 
-    .hero-hook,
-    .hero-target,
-    .hero-description,
-    .section-heading h2,
-    .section-heading p {
-        word-break: keep-all;
-        overflow-wrap: break-word;
-    }
-
-
-    .generator-section
-    .section-heading h2 {
-        white-space: normal;
-    }
-
-
-    /* -------------------------
-       MUSIC CARD MOBILE
-    ------------------------- */
-
     .music-card {
-        width: 100%;
-
         padding: 20px;
-
-        transform: none;
     }
 
-
-    .music-sheet {
-        min-height: 150px;
-
-        padding: 18px;
-    }
-
-
-    .treble-clef {
-        left: 18px;
-        top: 16px;
-
-        font-size: 39px;
-    }
-
-
-    .staff {
-        width:
-            calc(100% - 55px);
-
-        margin:
-            54px 0
-            0 55px;
-    }
-
-
-    .staff span {
-        margin: 8px 0;
-    }
-
-
-    .sheet-notes {
-        left: 80px;
-        top: 65px;
-
-        font-size: 21px;
-
-        letter-spacing: 3px;
-    }
-
-
-    .piano {
-        height: 95px;
-
-        margin-top: 20px;
-    }
-
-
-    .music-card-message {
-        font-size: 1.08rem;
-    }
-
-
-    /* -------------------------
-       SECTIONS
-    ------------------------- */
 
     .about-section,
     .generator-section,
@@ -1859,7 +1064,6 @@ textarea:focus {
 
     #lesson-form {
         padding: 20px;
-
         border-radius: 20px;
     }
 
@@ -1882,14 +1086,12 @@ textarea:focus {
 
     .loading-box {
         align-items: flex-start;
-
         padding: 20px;
     }
 
 
     .result-area {
-        padding:
-            22px 18px;
+        padding: 22px;
     }
 
 
@@ -1898,41 +1100,27 @@ textarea:focus {
     }
 
 
-    .lesson-section-title {
-        font-size: 1.2rem;
-    }
-
-
-    .lesson-paragraph,
-    .lesson-list li {
-        font-size: 0.95rem;
-    }
-
-
     .contact-grid {
         grid-template-columns: 1fr;
     }
+
 }
 
 
-/* =====================================================
-   ACCESSIBILITY
-===================================================== */
+/* Music symbol rendering fallback */
 
-@media (prefers-reduced-motion: reduce) {
-
-    *,
-    *::before,
-    *::after {
-        scroll-behavior: auto !important;
-
-        animation-duration:
-            0.01ms !important;
-
-        animation-iteration-count:
-            1 !important;
-
-        transition-duration:
-            0.01ms !important;
-    }
+.treble-clef,
+.feature-icon,
+.about-icon,
+.result-icon,
+.button-note,
+.loading-symbol,
+.footer-notes,
+.logo {
+    font-family:
+        "Segoe UI Symbol",
+        "Noto Sans Symbols 2",
+        "Arial Unicode MS",
+        "Noto Sans KR",
+        sans-serif;
 }
