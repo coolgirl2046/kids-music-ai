@@ -16,6 +16,9 @@
 
     <title>AI 유아음악 수업안 생성기</title>
 
+
+    <!-- Google Fonts -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
     <link
@@ -37,6 +40,11 @@
 
 
 <body>
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
 
     <header class="site-header">
 
@@ -75,14 +83,18 @@
     </header>
 
 
-
     <main>
 
+
+        <!-- =====================================================
+             HOME
+        ====================================================== -->
 
         <section
             id="home"
             class="hero-section"
         >
+
 
             <span
                 class="floating-note note-one"
@@ -90,6 +102,7 @@
             >
                 ♪
             </span>
+
 
             <span
                 class="floating-note note-two"
@@ -101,6 +114,8 @@
 
             <div class="hero-inner">
 
+
+                <!-- 왼쪽 텍스트 -->
 
                 <div class="hero-text">
 
@@ -143,6 +158,7 @@
                 </div>
 
 
+                <!-- 오른쪽 음악 비주얼 -->
 
                 <div
                     class="hero-visual"
@@ -151,313 +167,166 @@
 
                     <div class="music-card">
 
+
+                        <!-- =================================================
+                             오선보
+                             4/4
+                             도 도 솔 솔 | 라 라 솔
+                             앞 6개 4분음표
+                             마지막 솔 2분음표
+                        ================================================== -->
+
                         <div class="music-sheet">
 
-                            <!-- 4/4 작은별 첫 구절
-                                 도 도 솔 솔 | 라 라 솔
-                                 앞의 여섯 음표 = 4분음표
-                                 마지막 솔 = 2분음표 -->
 
-                            <svg
-                                class="lesson-score"
-                                viewBox="0 0 440 190"
-                                role="img"
-                                aria-label="4분의 4박자 도 도 솔 솔 라 라 솔, 마지막 솔은 2분음표"
-                                style="width:100%;height:auto;display:block;"
-                            >
+                            <!-- 높은음자리표 -->
 
-                                <!-- 오선 -->
-
-                                <g
-                                    stroke="#b89473"
-                                    stroke-width="1"
-                                    fill="none"
-                                >
-
-                                    <line
-                                        x1="68"
-                                        y1="58"
-                                        x2="420"
-                                        y2="58"
-                                    />
-
-                                    <line
-                                        x1="68"
-                                        y1="72"
-                                        x2="420"
-                                        y2="72"
-                                    />
-
-                                    <line
-                                        x1="68"
-                                        y1="86"
-                                        x2="420"
-                                        y2="86"
-                                    />
-
-                                    <line
-                                        x1="68"
-                                        y1="100"
-                                        x2="420"
-                                        y2="100"
-                                    />
-
-                                    <line
-                                        x1="68"
-                                        y1="114"
-                                        x2="420"
-                                        y2="114"
-                                    />
-
-                                </g>
+                            <span class="treble-clef">
+                                𝄞
+                            </span>
 
 
-                                <!-- 높은음자리표 -->
+                            <!-- 4/4 박자 -->
 
-                                <text
-                                    x="72"
-                                    y="111"
-                                    font-family="serif"
-                                    font-size="58"
-                                    fill="#815338"
-                                >
-                                    𝄞
-                                </text>
+                            <div class="time-signature">
 
-
-                                <!-- 4/4 박자표 -->
-
-                                <text
-                                    x="105"
-                                    y="80"
-                                    font-family="serif"
-                                    font-size="19"
-                                    font-weight="700"
-                                    fill="#815338"
-                                >
+                                <span>
                                     4
-                                </text>
+                                </span>
 
-                                <text
-                                    x="105"
-                                    y="106"
-                                    font-family="serif"
-                                    font-size="19"
-                                    font-weight="700"
-                                    fill="#815338"
-                                >
+                                <span>
                                     4
-                                </text>
+                                </span>
+
+                            </div>
 
 
+                            <!-- 오선 -->
 
-                                <!-- 첫 번째 도
-                                     오선 아래 보조선 -->
+                            <div class="staff">
 
-                                <line
-                                    x1="132"
-                                    y1="128"
-                                    x2="154"
-                                    y2="128"
-                                    stroke="#b89473"
-                                    stroke-width="1"
-                                />
-
-                                <ellipse
-                                    cx="143"
-                                    cy="128"
-                                    rx="8"
-                                    ry="5.5"
-                                    fill="#815338"
-                                />
-
-                                <line
-                                    x1="151"
-                                    y1="128"
-                                    x2="151"
-                                    y2="91"
-                                    stroke="#815338"
-                                    stroke-width="1.6"
-                                />
+                                <span class="staff-line"></span>
+                                <span class="staff-line"></span>
+                                <span class="staff-line"></span>
+                                <span class="staff-line"></span>
+                                <span class="staff-line"></span>
 
 
+                                <!-- 도 4분음표 -->
 
-                                <!-- 두 번째 도
-                                     오선 아래 보조선 -->
+                                <span class="music-note quarter-note note-do note-1">
 
-                                <line
-                                    x1="174"
-                                    y1="128"
-                                    x2="196"
-                                    y2="128"
-                                    stroke="#b89473"
-                                    stroke-width="1"
-                                />
+                                    <span class="note-head"></span>
 
-                                <ellipse
-                                    cx="185"
-                                    cy="128"
-                                    rx="8"
-                                    ry="5.5"
-                                    fill="#815338"
-                                />
+                                    <span class="note-stem"></span>
 
-                                <line
-                                    x1="193"
-                                    y1="128"
-                                    x2="193"
-                                    y2="91"
-                                    stroke="#815338"
-                                    stroke-width="1.6"
-                                />
+                                </span>
 
 
+                                <!-- 도 4분음표 -->
 
-                                <!-- 첫 번째 솔 -->
+                                <span class="music-note quarter-note note-do note-2">
 
-                                <ellipse
-                                    cx="235"
-                                    cy="86"
-                                    rx="8"
-                                    ry="5.5"
-                                    fill="#815338"
-                                />
+                                    <span class="note-head"></span>
 
-                                <line
-                                    x1="243"
-                                    y1="86"
-                                    x2="243"
-                                    y2="49"
-                                    stroke="#815338"
-                                    stroke-width="1.6"
-                                />
+                                    <span class="note-stem"></span>
+
+                                </span>
 
 
+                                <!-- 솔 4분음표 -->
 
-                                <!-- 두 번째 솔 -->
+                                <span class="music-note quarter-note note-sol note-3">
 
-                                <ellipse
-                                    cx="277"
-                                    cy="86"
-                                    rx="8"
-                                    ry="5.5"
-                                    fill="#815338"
-                                />
+                                    <span class="note-head"></span>
 
-                                <line
-                                    x1="285"
-                                    y1="86"
-                                    x2="285"
-                                    y2="49"
-                                    stroke="#815338"
-                                    stroke-width="1.6"
-                                />
+                                    <span class="note-stem"></span>
+
+                                </span>
 
 
+                                <!-- 솔 4분음표 -->
 
-                                <!-- 마디선 -->
+                                <span class="music-note quarter-note note-sol note-4">
 
-                                <line
-                                    x1="310"
-                                    y1="51"
-                                    x2="310"
-                                    y2="121"
-                                    stroke="#815338"
-                                    stroke-width="1.2"
-                                />
+                                    <span class="note-head"></span>
+
+                                    <span class="note-stem"></span>
+
+                                </span>
 
 
+                                <!-- 첫 번째 마디선 -->
 
-                                <!-- 첫 번째 라 -->
-
-                                <ellipse
-                                    cx="330"
-                                    cy="79"
-                                    rx="8"
-                                    ry="5.5"
-                                    fill="#815338"
-                                />
-
-                                <line
-                                    x1="338"
-                                    y1="79"
-                                    x2="338"
-                                    y2="42"
-                                    stroke="#815338"
-                                    stroke-width="1.6"
-                                />
+                                <span
+                                    class="barline barline-1"
+                                    aria-hidden="true"
+                                ></span>
 
 
+                                <!-- 라 4분음표 -->
 
-                                <!-- 두 번째 라 -->
+                                <span class="music-note quarter-note note-la note-5">
 
-                                <ellipse
-                                    cx="365"
-                                    cy="79"
-                                    rx="8"
-                                    ry="5.5"
-                                    fill="#815338"
-                                />
+                                    <span class="note-head"></span>
 
-                                <line
-                                    x1="373"
-                                    y1="79"
-                                    x2="373"
-                                    y2="42"
-                                    stroke="#815338"
-                                    stroke-width="1.6"
-                                />
+                                    <span class="note-stem"></span>
+
+                                </span>
 
 
+                                <!-- 라 4분음표 -->
 
-                                <!-- 마지막 솔
-                                     2분음표
-                                     속이 빈 음표머리 -->
+                                <span class="music-note quarter-note note-la note-6">
 
-                                <ellipse
-                                    cx="405"
-                                    cy="86"
-                                    rx="8"
-                                    ry="5.5"
-                                    fill="#fff8ec"
-                                    stroke="#815338"
-                                    stroke-width="1.8"
-                                />
+                                    <span class="note-head"></span>
 
-                                <line
-                                    x1="413"
-                                    y1="86"
-                                    x2="413"
-                                    y2="49"
-                                    stroke="#815338"
-                                    stroke-width="1.6"
-                                />
+                                    <span class="note-stem"></span>
+
+                                </span>
+
+
+                                <!-- 마지막 솔 2분음표 -->
+
+                                <span class="music-note half-note note-sol note-7">
+
+                                    <span class="note-head"></span>
+
+                                    <span class="note-stem"></span>
+
+                                </span>
 
 
                                 <!-- 끝 마디선 -->
 
-                                <line
-                                    x1="423"
-                                    y1="51"
-                                    x2="423"
-                                    y2="121"
-                                    stroke="#815338"
-                                    stroke-width="1.2"
-                                />
+                                <span
+                                    class="barline barline-2"
+                                    aria-hidden="true"
+                                ></span>
 
-                            </svg>
+                            </div>
 
                         </div>
 
 
+                        <!-- =================================================
+                             PIANO
+                        ================================================== -->
+
                         <div class="piano">
 
                             <span class="white-key"></span>
+
                             <span class="white-key"></span>
+
                             <span class="white-key"></span>
+
                             <span class="white-key"></span>
+
                             <span class="white-key"></span>
+
                             <span class="white-key"></span>
+
                             <span class="white-key"></span>
 
                         </div>
@@ -468,6 +337,7 @@
                             more meaningful
                         </p>
 
+
                     </div>
 
                 </div>
@@ -475,6 +345,9 @@
             </div>
 
 
+            <!-- =====================================================
+                 핵심 기능
+            ====================================================== -->
 
             <div class="hero-features">
 
@@ -500,7 +373,6 @@
                 </article>
 
 
-
                 <article class="feature-card">
 
                     <span
@@ -520,7 +392,6 @@
                     </p>
 
                 </article>
-
 
 
                 <article class="feature-card">
@@ -549,11 +420,15 @@
         </section>
 
 
+        <!-- =====================================================
+             ABOUT
+        ====================================================== -->
 
         <section
             id="about"
             class="about-section"
         >
+
 
             <div class="section-heading">
 
@@ -572,7 +447,6 @@
                 </p>
 
             </div>
-
 
 
             <div class="about-grid">
@@ -604,7 +478,6 @@
                 </article>
 
 
-
                 <article class="about-card">
 
                     <span class="card-number">
@@ -629,7 +502,6 @@
                     </p>
 
                 </article>
-
 
 
                 <article class="about-card">
@@ -663,6 +535,9 @@
         </section>
 
 
+        <!-- =====================================================
+             AI GENERATOR
+        ====================================================== -->
 
         <section
             id="generator"
@@ -676,13 +551,16 @@
                     AI LESSON DESIGN
                 </p>
 
+
                 <span class="step-badge">
                     STEP 1
                 </span>
 
+
                 <h2>
                     나만의 음악 수업안을 만들어보세요
                 </h2>
+
 
                 <p>
                     필요한 수업 조건을 입력하면
@@ -691,7 +569,6 @@
                 </p>
 
             </div>
-
 
 
             <div class="generator-container">
@@ -712,12 +589,13 @@
                 </div>
 
 
-
                 <form
                     id="lesson-form"
                     novalidate
                 >
 
+
+                    <!-- 01 연령 -->
 
                     <div class="form-group">
 
@@ -775,6 +653,7 @@
                     </div>
 
 
+                    <!-- 02 수업 시간 -->
 
                     <div class="form-group">
 
@@ -828,6 +707,7 @@
                     </div>
 
 
+                    <!-- 03 수업 주제 -->
 
                     <div class="form-group">
 
@@ -858,6 +738,7 @@
                     </div>
 
 
+                    <!-- 04 음악 개념 -->
 
                     <fieldset class="choice-fieldset">
 
@@ -890,7 +771,6 @@
                             </label>
 
 
-
                             <label class="checkbox-item">
 
                                 <input
@@ -904,7 +784,6 @@
                                 </span>
 
                             </label>
-
 
 
                             <label class="checkbox-item">
@@ -922,7 +801,6 @@
                             </label>
 
 
-
                             <label class="checkbox-item">
 
                                 <input
@@ -938,7 +816,6 @@
                             </label>
 
 
-
                             <label class="checkbox-item">
 
                                 <input
@@ -952,7 +829,6 @@
                                 </span>
 
                             </label>
-
 
 
                             <label class="checkbox-item">
@@ -984,6 +860,7 @@
                     </fieldset>
 
 
+                    <!-- 05 활동 유형 -->
 
                     <fieldset class="choice-fieldset">
 
@@ -1016,7 +893,6 @@
                             </label>
 
 
-
                             <label class="checkbox-item">
 
                                 <input
@@ -1030,7 +906,6 @@
                                 </span>
 
                             </label>
-
 
 
                             <label class="checkbox-item">
@@ -1048,7 +923,6 @@
                             </label>
 
 
-
                             <label class="checkbox-item">
 
                                 <input
@@ -1064,7 +938,6 @@
                             </label>
 
 
-
                             <label class="checkbox-item">
 
                                 <input
@@ -1078,7 +951,6 @@
                                 </span>
 
                             </label>
-
 
 
                             <label class="checkbox-item">
@@ -1110,6 +982,7 @@
                     </fieldset>
 
 
+                    <!-- 06 교육 접근법 -->
 
                     <fieldset class="choice-fieldset">
 
@@ -1142,7 +1015,6 @@
                             </label>
 
 
-
                             <label class="checkbox-item">
 
                                 <input
@@ -1156,7 +1028,6 @@
                                 </span>
 
                             </label>
-
 
 
                             <label class="checkbox-item">
@@ -1179,6 +1050,7 @@
                     </fieldset>
 
 
+                    <!-- 07 난이도 -->
 
                     <div class="form-group">
 
@@ -1224,6 +1096,7 @@
                     </div>
 
 
+                    <!-- 08 클래식 -->
 
                     <div class="form-group">
 
@@ -1265,6 +1138,7 @@
                     </div>
 
 
+                    <!-- 09 직접 입력 클래식 -->
 
                     <div
                         class="form-group"
@@ -1290,6 +1164,7 @@
                             maxlength="120"
                         >
 
+
                         <p class="field-help">
                             클래식 음악에서 직접 입력을 선택한 경우 작성해 주세요
                         </p>
@@ -1297,6 +1172,7 @@
                     </div>
 
 
+                    <!-- 10 악기/교구 -->
 
                     <div class="form-group">
 
@@ -1322,6 +1198,7 @@
                     </div>
 
 
+                    <!-- 11 추가 요청 -->
 
                     <div class="form-group">
 
@@ -1347,6 +1224,7 @@
                     </div>
 
 
+                    <!-- 전송 버튼 -->
 
                     <button
                         type="submit"
@@ -1371,6 +1249,9 @@
                 </form>
 
 
+                <!-- =================================================
+                     오류
+                ================================================== -->
 
                 <div
                     id="error-message"
@@ -1391,6 +1272,9 @@
                 </div>
 
 
+                <!-- =================================================
+                     로딩
+                ================================================== -->
 
                 <div
                     id="loading-message"
@@ -1428,6 +1312,9 @@
                 </div>
 
 
+                <!-- =================================================
+                     결과
+                ================================================== -->
 
                 <section
                     id="result-area"
@@ -1438,7 +1325,6 @@
 
 
                     <div class="result-header">
-
 
                         <div>
 
@@ -1459,7 +1345,6 @@
                         >
                             ♩
                         </span>
-
 
                     </div>
 
@@ -1492,11 +1377,15 @@
         </section>
 
 
+        <!-- =====================================================
+             CONTACT
+        ====================================================== -->
 
         <section
             id="contact"
             class="contact-section"
         >
+
 
             <div class="section-heading">
 
@@ -1514,7 +1403,6 @@
                 </p>
 
             </div>
-
 
 
             <div class="contact-grid">
@@ -1538,7 +1426,6 @@
                     </p>
 
                 </article>
-
 
 
                 <article class="contact-card">
@@ -1571,6 +1458,9 @@
     </main>
 
 
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
 
     <footer class="site-footer">
 
@@ -1581,16 +1471,17 @@
             ♪ ♫ ♩
         </div>
 
+
         <p>
             좋은 수업은 좋은 준비에서 시작됩니다
         </p>
+
 
         <strong>
             © 2026 AI 유아음악 수업안 생성기
         </strong>
 
     </footer>
-
 
 
     <script src="js/script.js"></script>

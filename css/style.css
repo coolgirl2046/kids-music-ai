@@ -184,8 +184,16 @@ section {
     overflow: hidden;
     padding: 100px 0 70px;
     background:
-        radial-gradient(circle at 12% 20%, rgba(219, 189, 146, 0.12), transparent 30%),
-        radial-gradient(circle at 85% 30%, rgba(204, 149, 104, 0.08), transparent 35%),
+        radial-gradient(
+            circle at 12% 20%,
+            rgba(219, 189, 146, 0.12),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 30%,
+            rgba(204, 149, 104, 0.08),
+            transparent 35%
+        ),
         var(--bg);
 }
 
@@ -263,68 +271,333 @@ section {
 }
 
 
+/* =========================
+   MUSIC SHEET
+========================= */
+
 .music-sheet {
     position: relative;
-    min-height: 170px;
-    padding: 24px;
+    width: 100%;
+    height: 190px;
+    padding: 20px;
     border: 1px solid #edd8ba;
     border-radius: 22px;
     background: #fffaf2;
+    overflow: hidden;
 }
 
 
+/* 높은음자리표 */
+
 .treble-clef {
     position: absolute;
-    left: 22px;
-    top: 12px;
+    left: 18px;
+    top: 55px;
+    z-index: 5;
+
     display: inline-flex;
     align-items: center;
     justify-content: center;
+
     min-width: 44px;
     min-height: 44px;
-    font-family: "Segoe UI Symbol", "Arial Unicode MS", sans-serif;
-    font-size: 2.4rem;
+
+    font-family:
+        "Segoe UI Symbol",
+        "Noto Sans Symbols 2",
+        "Arial Unicode MS",
+        sans-serif;
+
+    font-size: 3.2rem;
     line-height: 1;
+
     color: #8f5e3c;
 }
 
 
-.staff {
-    margin-top: 55px;
+/* 4/4 박자 */
+
+.time-signature {
+    position: absolute;
+
+    left: 67px;
+    top: 57px;
+
+    z-index: 5;
+
+    width: 22px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    font-size: 0.92rem;
+    font-weight: 700;
+    line-height: 0.95;
+
+    color: #8f5e3c;
 }
 
 
-.staff span {
-    display: block;
+/* 오선 */
+
+.staff {
+    position: absolute;
+
+    left: 98px;
+    right: 18px;
+    top: 62px;
+
+    height: 50px;
+    margin: 0;
+}
+
+
+/* 오선 5줄 */
+
+.staff-line {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+
     height: 1px;
-    margin: 10px 0;
+
     background: #b8916f;
 }
 
 
-.sheet-notes {
-    margin-top: -38px;
-    text-align: center;
-    font-size: 1.6rem;
-    color: #915a37;
+.staff-line:nth-child(1) {
+    top: 0;
 }
 
+
+.staff-line:nth-child(2) {
+    top: 12px;
+}
+
+
+.staff-line:nth-child(3) {
+    top: 24px;
+}
+
+
+.staff-line:nth-child(4) {
+    top: 36px;
+}
+
+
+.staff-line:nth-child(5) {
+    top: 48px;
+}
+
+
+/* =========================
+   MUSIC NOTES
+========================= */
+
+.music-note {
+    position: absolute;
+
+    z-index: 10;
+
+    width: 16px;
+    height: 56px;
+}
+
+
+/* 음표 머리 */
+
+.note-head {
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 13px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    background: #7f5034;
+
+    transform: rotate(-18deg);
+}
+
+
+/* 음표 줄기 */
+
+.note-stem {
+    position: absolute;
+
+    width: 1.5px;
+    height: 31px;
+
+    background: #7f5034;
+}
+
+
+/* 4분음표 */
+
+.quarter-note .note-stem {
+    left: 11px;
+    top: -22px;
+}
+
+
+/* 2분음표 */
+
+.half-note .note-head {
+    background: #fffaf2;
+
+    border: 2px solid #7f5034;
+
+    width: 14px;
+    height: 10px;
+}
+
+
+.half-note .note-stem {
+    left: 12px;
+    top: -23px;
+}
+
+
+/* =========================
+   NOTE PITCH
+========================= */
+
+/*
+   오선 기준
+
+   도 : 오선 아래쪽
+   솔 : 두 번째 줄
+   라 : 두 번째 칸
+*/
+
+
+.note-do {
+    top: 50px;
+}
+
+
+.note-sol {
+    top: 24px;
+}
+
+
+.note-la {
+    top: 18px;
+}
+
+
+/* =========================
+   NOTE HORIZONTAL POSITION
+========================= */
+
+
+/* 도 도 솔 솔 */
+
+.note-1 {
+    left: 8%;
+}
+
+
+.note-2 {
+    left: 20%;
+}
+
+
+.note-3 {
+    left: 34%;
+}
+
+
+.note-4 {
+    left: 46%;
+}
+
+
+/* =========================
+   FIRST BARLINE
+========================= */
+
+.barline-1 {
+    position: absolute;
+
+    left: 59%;
+    top: -4px;
+
+    width: 1px;
+    height: 58px;
+
+    background: #8d694e;
+
+    z-index: 8;
+}
+
+
+/* 라 라 솔 */
+
+.note-5 {
+    left: 67%;
+}
+
+
+.note-6 {
+    left: 79%;
+}
+
+
+.note-7 {
+    left: 91%;
+}
+
+
+/* =========================
+   END BARLINE
+========================= */
+
+.barline-2 {
+    position: absolute;
+
+    left: 99%;
+    top: -4px;
+
+    width: 1px;
+    height: 58px;
+
+    background: #8d694e;
+
+    z-index: 8;
+}
+
+
+/* =========================
+   PIANO
+========================= */
 
 .piano {
     height: 118px;
     margin-top: 26px;
+
     display: grid;
     grid-template-columns: repeat(7, 1fr);
+
     border: 2px solid #604636;
     border-radius: 8px;
+
     overflow: hidden;
+
     background: #fff;
 }
 
 
 .white-key {
     position: relative;
+
     border-right: 1px solid #b9a28d;
+
     background: #fffdf9;
 }
 
@@ -340,28 +613,38 @@ section {
 .white-key:nth-child(6)::before,
 .white-key:nth-child(7)::before {
     content: "";
+
     position: absolute;
+
     top: 0;
     left: -18%;
+
     width: 36%;
     height: 64%;
+
     background: #49352c;
 }
 
 
 .music-card-message {
     margin: 28px 0 0;
+
     text-align: center;
+
     font-family: "Cormorant Garamond", serif;
     font-size: 1.25rem;
+
     color: #825b42;
 }
 
 
 .floating-note {
     position: absolute;
+
     font-size: 6rem;
+
     color: rgba(166, 112, 67, 0.08);
+
     pointer-events: none;
 }
 
@@ -381,8 +664,10 @@ section {
 .hero-features {
     width: min(var(--max-width), calc(100% - 40px));
     margin: 72px auto 0;
+
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+
     gap: 22px;
 }
 
@@ -390,13 +675,17 @@ section {
 .feature-card {
     min-height: 220px;
     padding: 30px;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
     text-align: center;
+
     border: 1px solid var(--line);
     border-radius: 24px;
+
     background: rgba(255, 253, 249, 0.72);
 }
 
@@ -405,10 +694,14 @@ section {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+
     min-height: 42px;
+
     margin-bottom: 16px;
+
     font-size: 2rem;
     line-height: 1;
+
     color: var(--accent);
 }
 
@@ -438,34 +731,44 @@ section {
 .about-grid {
     width: min(var(--max-width), calc(100% - 40px));
     margin: 0 auto;
+
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+
     gap: 24px;
 }
 
 
 .about-card {
     position: relative;
+
     min-height: 300px;
     padding: 34px 42px;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
     text-align: center;
+
     border: 1px solid var(--line);
     border-radius: 24px;
+
     background: #fffdf9;
 }
 
 
 .card-number {
     position: absolute;
+
     right: 28px;
     top: 22px;
+
     font-family: "Cormorant Garamond", serif;
     font-size: 2.2rem;
     font-weight: 700;
+
     color: rgba(142, 102, 67, 0.16);
 }
 
@@ -474,10 +777,14 @@ section {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+
     min-height: 44px;
+
     margin-bottom: 22px;
+
     font-size: 2rem;
     line-height: 1;
+
     color: var(--accent);
 }
 
@@ -508,12 +815,17 @@ section {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+
     min-height: 32px;
+
     margin-bottom: 16px;
     padding: 0 14px;
+
     border-radius: 999px;
+
     background: #ead4bd;
     color: #855535;
+
     font-size: 0.78rem;
     font-weight: 800;
     letter-spacing: 0.08em;
@@ -529,8 +841,10 @@ section {
 .form-guide {
     margin-bottom: 24px;
     padding: 20px 24px;
+
     border: 1px solid var(--line);
     border-radius: var(--radius-md);
+
     background: rgba(255, 253, 249, 0.74);
 }
 
@@ -549,9 +863,12 @@ section {
 
 #lesson-form {
     padding: 30px;
+
     border: 1px solid var(--line);
     border-radius: var(--radius-lg);
+
     background: var(--card);
+
     box-shadow: var(--shadow);
 }
 
@@ -566,9 +883,13 @@ section {
 .choice-fieldset legend {
     display: flex;
     align-items: center;
+
     gap: 10px;
+
     margin-bottom: 10px;
+
     color: var(--text);
+
     font-size: 1.05rem;
     font-weight: 700;
 }
@@ -578,12 +899,17 @@ section {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+
     min-width: 34px;
     height: 30px;
+
     padding: 0 8px;
+
     border-radius: 999px;
+
     background: #f0dfcc;
     color: #93603e;
+
     font-size: 0.8rem;
     font-weight: 800;
 }
@@ -593,11 +919,15 @@ input[type="text"],
 select,
 textarea {
     width: 100%;
+
     border: 1px solid #dfc19b;
     border-radius: 14px;
+
     background: #fffdf9;
     color: var(--text);
+
     outline: none;
+
     transition:
         border-color 0.2s ease,
         box-shadow 0.2s ease;
@@ -613,7 +943,9 @@ select {
 
 textarea {
     min-height: 120px;
+
     padding: 15px 16px;
+
     resize: vertical;
 }
 
@@ -622,13 +954,17 @@ input[type="text"]:focus,
 select:focus,
 textarea:focus {
     border-color: var(--accent);
-    box-shadow: 0 0 0 4px rgba(191, 116, 79, 0.1);
+
+    box-shadow:
+        0 0 0 4px rgba(191, 116, 79, 0.1);
 }
 
 
 .choice-fieldset {
     min-width: 0;
+
     padding: 18px 20px 20px;
+
     border: 1px solid var(--line);
     border-radius: 18px;
 }
@@ -641,22 +977,32 @@ textarea:focus {
 
 .checkbox-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
     gap: 12px;
+
     margin-bottom: 16px;
 }
 
 
 .checkbox-item {
     min-height: 46px;
+
     padding: 0 14px;
+
     display: flex;
     align-items: center;
     justify-content: flex-start;
+
     gap: 10px;
+
     border: 1px solid #e6d1b5;
     border-radius: 12px;
+
     background: #fffaf4;
+
     cursor: pointer;
 }
 
@@ -664,44 +1010,60 @@ textarea:focus {
 .checkbox-item input[type="checkbox"] {
     width: 18px;
     height: 18px;
+
     margin: 0;
+
     flex: 0 0 auto;
+
     accent-color: var(--accent);
 }
 
 
 .checkbox-item span {
     display: inline-block;
+
     font-weight: 600;
     line-height: 1.4;
 }
 
 
 .method-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
 }
 
 
 .field-help {
     margin: 8px 2px 0;
+
     color: #9b8475;
+
     font-size: 0.88rem;
 }
 
 
 .generate-button {
     width: 100%;
+
     min-height: 56px;
+
     margin-top: 8px;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     gap: 8px;
+
     border-radius: 14px;
+
     background: var(--accent);
     color: #fff;
+
     font-weight: 800;
-    box-shadow: 0 9px 22px rgba(191, 116, 79, 0.18);
+
+    box-shadow:
+        0 9px 22px rgba(191, 116, 79, 0.18);
 }
 
 
@@ -723,17 +1085,23 @@ textarea:focus {
 
 .feedback-box {
     margin-top: 24px;
+
     padding: 24px 26px;
+
     border-radius: 18px;
 }
 
 
 .loading-box {
     min-height: 120px;
+
     display: flex;
     align-items: center;
+
     gap: 20px;
+
     border: 1px solid #ddc5a5;
+
     background: #fffaf3;
 }
 
@@ -741,26 +1109,37 @@ textarea:focus {
 .loading-symbol {
     width: 52px;
     height: 52px;
+
     flex: 0 0 52px;
+
     display: grid;
     place-items: center;
+
     border-radius: 50%;
+
     background: #f1ddc7;
+
     color: var(--accent);
+
     font-size: 1.6rem;
-    animation: pulseNote 1.2s ease-in-out infinite;
+
+    animation:
+        pulseNote 1.2s ease-in-out infinite;
 }
 
 
 .loading-copy strong {
     display: block;
+
     margin-bottom: 6px;
+
     font-size: 1.08rem;
 }
 
 
 .loading-copy p {
     margin: 0 0 5px;
+
     color: var(--text-soft);
 }
 
@@ -772,28 +1151,34 @@ textarea:focus {
 
 
 @keyframes pulseNote {
+
     0%,
     100% {
         transform: scale(1);
         opacity: 0.72;
     }
 
+
     50% {
         transform: scale(1.12);
         opacity: 1;
     }
+
 }
 
 
 .error-box {
     border: 1px solid var(--error-line);
+
     background: var(--error-bg);
+
     color: #8f4736;
 }
 
 
 .error-box strong {
     display: block;
+
     margin-bottom: 6px;
 }
 
@@ -809,10 +1194,14 @@ textarea:focus {
 
 .result-area {
     margin-top: 30px;
+
     padding: 34px;
+
     border: 1px solid var(--line);
     border-radius: var(--radius-lg);
+
     background: #fffdf9;
+
     box-shadow: var(--shadow);
 }
 
@@ -821,15 +1210,20 @@ textarea:focus {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
+
     gap: 20px;
+
     padding-bottom: 22px;
+
     border-bottom: 1px solid #ead8c1;
 }
 
 
 .result-header h2 {
     margin: 0;
+
     font-family: "Noto Serif KR", serif;
+
     font-size: 2rem;
 }
 
@@ -842,30 +1236,42 @@ textarea:focus {
 
 .result-guide {
     margin: 20px 0;
+
     color: var(--text-soft);
 }
 
 
 .lesson-result {
     min-height: 220px;
+
     padding: 24px;
+
     border: 1px solid #ead7bd;
     border-radius: 16px;
+
     background: #fffaf4;
+
     white-space: pre-wrap;
+
     overflow-wrap: anywhere;
+
     line-height: 1.85;
 }
 
 
 .secondary-button {
     min-height: 48px;
+
     margin-top: 20px;
+
     padding: 0 20px;
+
     border: 1px solid #d9b996;
     border-radius: 12px;
+
     background: #fffaf4;
     color: var(--text);
+
     font-weight: 700;
 }
 
@@ -876,36 +1282,50 @@ textarea:focus {
 
 .contact-section {
     padding: 110px 0;
+
     background: var(--bg-soft);
 }
 
 
 .contact-grid {
     width: min(960px, calc(100% - 40px));
+
     margin: 0 auto;
+
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
     gap: 24px;
 }
 
 
 .contact-card {
     min-height: 230px;
+
     padding: 34px;
+
     display: flex;
     flex-direction: column;
+
     justify-content: center;
     align-items: center;
+
     text-align: center;
+
     border: 1px solid var(--line);
     border-radius: 24px;
+
     background: #fffdf9;
 }
 
 
 .contact-icon {
     margin-bottom: 16px;
+
     font-size: 2rem;
+
     color: var(--accent);
 }
 
@@ -917,6 +1337,7 @@ textarea:focus {
 
 .contact-card p {
     margin: 0;
+
     color: var(--text-soft);
 }
 
@@ -927,21 +1348,27 @@ textarea:focus {
 
 .site-footer {
     padding: 46px 20px;
+
     text-align: center;
+
     background: #4d382f;
+
     color: #fff7ef;
 }
 
 
 .footer-notes {
     margin-bottom: 8px;
+
     color: #e6b766;
+
     font-size: 1.5rem;
 }
 
 
 .site-footer p {
     margin: 0 0 8px;
+
     opacity: 0.82;
 }
 
@@ -959,6 +1386,7 @@ textarea:focus {
 
     .hero-inner {
         grid-template-columns: 1fr;
+
         gap: 50px;
     }
 
@@ -988,7 +1416,8 @@ textarea:focus {
 
     .checkbox-grid,
     .method-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
     }
 
 }
@@ -1001,10 +1430,17 @@ textarea:focus {
 @media (max-width: 640px) {
 
     .navigation {
-        width: min(100% - 24px, var(--max-width));
+        width: min(
+            100% - 24px,
+            var(--max-width)
+        );
+
         min-height: auto;
+
         padding: 14px 0;
+
         flex-direction: column;
+
         gap: 12px;
     }
 
@@ -1016,7 +1452,9 @@ textarea:focus {
 
     .nav-menu {
         width: 100%;
+
         justify-content: space-between;
+
         gap: 8px;
     }
 
@@ -1036,7 +1474,10 @@ textarea:focus {
     .about-grid,
     .generator-container,
     .contact-grid {
-        width: min(100% - 24px, var(--max-width));
+        width: min(
+            100% - 24px,
+            var(--max-width)
+        );
     }
 
 
@@ -1055,6 +1496,33 @@ textarea:focus {
     }
 
 
+    /*
+       모바일에서 오선보가
+       카드 밖으로 밀리지 않도록
+       가로 영역을 확보
+    */
+
+    .music-sheet {
+        height: 190px;
+    }
+
+
+    .staff {
+        left: 90px;
+        right: 12px;
+    }
+
+
+    .treble-clef {
+        left: 12px;
+    }
+
+
+    .time-signature {
+        left: 60px;
+    }
+
+
     .about-section,
     .generator-section,
     .contact-section {
@@ -1064,6 +1532,7 @@ textarea:focus {
 
     #lesson-form {
         padding: 20px;
+
         border-radius: 20px;
     }
 
@@ -1086,6 +1555,7 @@ textarea:focus {
 
     .loading-box {
         align-items: flex-start;
+
         padding: 20px;
     }
 
@@ -1107,7 +1577,9 @@ textarea:focus {
 }
 
 
-/* Music symbol rendering fallback */
+/* =========================
+   MUSIC SYMBOL RENDERING
+========================= */
 
 .treble-clef,
 .feature-icon,
