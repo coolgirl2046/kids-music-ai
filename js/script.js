@@ -1,591 +1,550 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const form = document.getElementById("lesson-form");
-    const generateButton = document.getElementById("generate-button");
-    const generateButtonText = document.getElementById("generate-button-text");
+const lessonForm = document.querySelector("#lesson-form");
 
-    const loadingMessage = document.getElementById("loading-message");
-    const loadingDetail = document.getElementById("loading-detail");
+const loadingMessage = document.querySelector("#loading-message");
+const loadingDetail = document.querySelector("#loading-detail");
 
-    const errorMessage = document.getElementById("error-message");
-    const errorText = document.getElementById("error-text");
+const errorMessage = document.querySelector("#error-message");
+const errorText = document.querySelector("#error-text");
 
-    const resultArea = document.getElementById("result-area");
-    const lessonResult = document.getElementById("lesson-result");
-    const retryButton = document.getElementById("retry-button");
+const resultArea = document.querySelector("#result-area");
+const lessonResult = document.querySelector("#lesson-result");
 
-    const classicalMusic = document.getElementById("classical-music");
-    const classicalTitle = document.getElementById("classical-title");
+const generateButton = document.querySelector("#generate-button");
+const generateButtonText = document.querySelector("#generate-button-text");
 
-    if (!form || !generateButton || !loadingMessage || !resultArea || !lessonResult) {
-        console.error("필수 요소를 찾을 수 없습니다");
+const retryButton = document.querySelector("#retry-button");
+
+const classicalMusicSelect = document.querySelector("#classical-music");
+const classicalTitleInput = document.querySelector("#classical-title");
+const classicalTitleGroup = document.querySelector("#classical-title-group");
+
+let loadingTimer = null;
+
+
+/* =====================================================
+   체크박스 값 가져오기
+===================================================== */
+
+function getCheckedValues(name) {
+    return Array.from(
+        document.querySelectorAll(`input[name="${name}"]:checked`)
+    ).map((input) => input.value);
+}
+
+
+/* =====================================================
+   오류 영역 숨기기
+===================================================== */
+
+function hideError() {
+    errorMessage.hidden = true;
+    errorText.textContent = "";
+}
+
+
+/* =====================================================
+   결과 영역 숨기기
+===================================================== */
+
+function hideResult() {
+    resultArea.hidden = true;
+    resultArea.classList.remove("result-visible");
+    lessonResult.innerHTML = "";
+}
+
+
+/* =====================================================
+   오류 표시
+===================================================== */
+
+function showError(message) {
+    stopLoading();
+    hideResult();
+
+    errorText.textContent = message;
+    errorMessage.hidden = false;
+
+    errorMessage.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+}
+
+
+/* =====================================================
+   로딩 시작
+===================================================== */
+
+function startLoading() {
+    hideError();
+    hideResult();
+
+    loadingMessage.hidden = false;
+
+    generateButton.disabled = true;
+    generateButtonText.textContent = "AI 수업안 생성 중...";
+
+    const loadingSteps = [
+        "연령과 수업 조건을 분석하고 있어요",
+        "음악 개념과 활동 유형을 연결하고 있어요",
+        "클래식 음악과 교수법을 반영하고 있어요",
+        "도입부터 마무리까지 수업 흐름을 정리하고 있어요"
+    ];
+
+    let index = 0;
+
+    loadingDetail.textContent = loadingSteps[index];
+
+    loadingTimer = setInterval(() => {
+        index = (index + 1) % loadingSteps.length;
+        loadingDetail.textContent = loadingSteps[index];
+    }, 2200);
+
+    loadingMessage.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+}
+
+
+/* =====================================================
+   로딩 종료
+===================================================== */
+
+function stopLoading() {
+    loadingMessage.hidden = true;
+
+    generateButton.disabled = false;
+    generateButtonText.textContent = "AI 수업안 생성하기";
+
+    if (loadingTimer) {
+        clearInterval(loadingTimer);
+        loadingTimer = null;
+    }
+}
+
+
+/* =====================================================
+   HTML 특수문자 보호
+===================================================== */
+
+function escapeHtml(text) {
+    return text
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+}
+
+
+/* =====================================================
+   Markdown 흔적 제거
+===================================================== */
+
+function cleanMarkdown(text) {
+    return text
+        .replace(/```[\s\S]*?```/g, "")
+        .replace(/^#{1,6}\s*/gm, "")
+        .replace(/\*\*(.*?)\*\*/g, "$1")
+        .replace(/__(.*?)__/g, "$1")
+        .replace(/\*(.*?)\*/g, "$1")
+        .replace(/_(.*?)_/g, "$1")
+        .replace(/^---+$/gm, "")
+        .replace(/^___+$/gm, "")
+        .replace(/^\*\*\*+$/gm, "")
+        .replace(/\r/g, "")
+        .trim();
+}
+
+
+/* =====================================================
+   AI 결과를 보기 좋은 HTML로 변환
+===================================================== */
+
+function formatLessonResult(rawText) {
+    const cleaned = cleanMarkdown(rawText);
+
+    const lines = cleaned
+        .split("\n")
+        .map((line) => line.trim());
+
+    let html = "";
+    let listOpen = false;
+
+    function closeList() {
+        if (listOpen) {
+            html += "</ul>";
+            listOpen = false;
+        }
+    }
+
+    for (const line of lines) {
+
+        if (!line) {
+            closeList();
+            continue;
+        }
+
+        const safeLine = escapeHtml(line);
+
+        // 큰 번호 제목
+        if (/^\d+\.\s+/.test(line)) {
+            closeList();
+
+            html += `
+                <h3 class="lesson-section-title">
+                    ${safeLine}
+                </h3>
+            `;
+
+            continue;
+        }
+
+        // 목록
+        if (/^[-•]\s+/.test(line)) {
+            if (!listOpen) {
+                html += `<ul class="lesson-list">`;
+                listOpen = true;
+            }
+
+            const itemText = line.replace(/^[-•]\s+/, "");
+
+            html += `
+                <li>
+                    ${escapeHtml(itemText)}
+                </li>
+            `;
+
+            continue;
+        }
+
+        // "- 작곡가" 같은 소제목
+        if (/^[가-힣A-Za-z\s]+:$/.test(line)) {
+            closeList();
+
+            html += `
+                <p class="lesson-subtitle">
+                    ${safeLine}
+                </p>
+            `;
+
+            continue;
+        }
+
+        // 일반 문장
+        closeList();
+
+        html += `
+            <p class="lesson-paragraph">
+                ${safeLine}
+            </p>
+        `;
+    }
+
+    closeList();
+
+    return html;
+}
+
+
+/* =====================================================
+   결과 표시
+===================================================== */
+
+function showResult(result) {
+    lessonResult.innerHTML = formatLessonResult(result);
+
+    resultArea.hidden = false;
+
+    // 보너스 미션: 결과 Fade-up 마이크로 인터랙션
+    resultArea.classList.remove("result-visible");
+
+    void resultArea.offsetWidth;
+
+    resultArea.classList.add("result-visible");
+
+    resultArea.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+
+/* =====================================================
+   클래식 직접 입력
+===================================================== */
+
+function updateClassicalInput() {
+    const selectedValue = classicalMusicSelect.value;
+
+    if (selectedValue === "직접 입력") {
+        classicalTitleInput.disabled = false;
+
+        classicalTitleInput.placeholder =
+            "예: 생상스 동물의 사육제 중 백조";
+
+        classicalTitleGroup.classList.add("is-active");
+    } else {
+        classicalTitleInput.value = "";
+        classicalTitleInput.disabled = true;
+
+        classicalTitleInput.placeholder =
+            "직접 입력을 선택하면 곡명을 작성할 수 있습니다";
+
+        classicalTitleGroup.classList.remove("is-active");
+    }
+}
+
+
+/* =====================================================
+   폼 제출
+===================================================== */
+
+lessonForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    hideError();
+    hideResult();
+
+    const age = document.querySelector("#age").value;
+
+    const lessonTime =
+        document.querySelector("#lesson-time").value;
+
+    const theme =
+        document.querySelector("#theme").value.trim();
+
+    const difficulty =
+        document.querySelector("#difficulty").value;
+
+    const classicalMusic =
+        document.querySelector("#classical-music").value;
+
+    const classicalTitle =
+        document.querySelector("#classical-title").value.trim();
+
+    const materials =
+        document.querySelector("#materials").value.trim();
+
+    const requestText =
+        document.querySelector("#request").value.trim();
+
+    const musicConceptOther =
+        document.querySelector("#music-concept-other").value.trim();
+
+    const activityTypeOther =
+        document.querySelector("#activity-type-other").value.trim();
+
+    const musicConcepts =
+        getCheckedValues("musicConcept");
+
+    const activityTypes =
+        getCheckedValues("activityType");
+
+    const teachingMethods =
+        getCheckedValues("teachingMethod");
+
+
+    /* =========================
+       필수값 검증
+    ========================== */
+
+    if (!age) {
+        showError("수업 연령을 선택해 주세요");
+        return;
+    }
+
+    if (!lessonTime) {
+        showError("수업 시간을 선택해 주세요");
+        return;
+    }
+
+    if (!theme) {
+        showError("수업 주제를 입력해 주세요");
+        return;
+    }
+
+    if (!difficulty) {
+        showError("수업 난이도를 선택해 주세요");
+        return;
+    }
+
+    if (!classicalMusic) {
+        showError("클래식 음악 선택 방식을 골라 주세요");
+        return;
+    }
+
+    if (
+        classicalMusic === "직접 입력" &&
+        !classicalTitle
+    ) {
+        showError("원하는 클래식 곡명을 입력해 주세요");
         return;
     }
 
 
     /* =========================
-       클래식 음악 선택 상태
-    ========================= */
+       서버 데이터
+    ========================== */
 
-    const updateClassicalTitleState = () => {
-        if (!classicalMusic || !classicalTitle) {
-            return;
-        }
+    const lessonData = {
+        age,
+        lessonTime,
+        theme,
 
-        if (classicalMusic.value === "직접 입력") {
-            classicalTitle.disabled = false;
-            classicalTitle.placeholder = "원하는 클래식 곡명을 입력하세요";
-        } else {
-            classicalTitle.disabled = true;
-            classicalTitle.value = "";
-            classicalTitle.placeholder =
-                "직접 입력을 선택한 경우 곡명을 작성하세요";
-        }
+        musicConcepts,
+        musicConceptOther,
+
+        activityTypes,
+        activityTypeOther,
+
+        teachingMethods,
+
+        difficulty,
+
+        classicalMusic,
+        classicalTitle,
+
+        materials,
+
+        request: requestText
     };
 
 
-    if (classicalMusic) {
-        classicalMusic.addEventListener(
-            "change",
-            updateClassicalTitleState
+    /* =========================
+       로딩 시작
+    ========================== */
+
+    startLoading();
+
+
+    /* =========================
+       60초 타임아웃
+    ========================== */
+
+    const controller = new AbortController();
+
+    const timeoutId = setTimeout(() => {
+        controller.abort();
+    }, 60000);
+
+
+    try {
+
+        const response = await fetch(
+            "/api/generate",
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify(lessonData),
+
+                signal: controller.signal
+            }
         );
 
-        updateClassicalTitleState();
-    }
 
+        let data;
 
-    /* =========================
-       값 가져오기
-    ========================= */
-
-    const getValue = (id) => {
-        const element = document.getElementById(id);
-
-        if (!element) {
-            return "";
-        }
-
-        return element.value.trim();
-    };
-
-
-    const getCheckedValues = (name) => {
-        return Array.from(
-            form.querySelectorAll(`input[name="${name}"]:checked`)
-        ).map((input) => input.value);
-    };
-
-
-    /* =========================
-       오류 표시
-    ========================= */
-
-    const showError = (message) => {
-        if (errorText) {
-            errorText.textContent = message;
-        }
-
-        if (errorMessage) {
-            errorMessage.hidden = false;
-
-            errorMessage.scrollIntoView({
-                behavior: "smooth",
-                block: "center"
-            });
-        }
-    };
-
-
-    const clearError = () => {
-        if (errorMessage) {
-            errorMessage.hidden = true;
-        }
-
-        if (errorText) {
-            errorText.textContent = "";
-        }
-    };
-
-
-    /* =========================
-       로딩 상태
-       보너스 미션 유지
-    ========================= */
-
-    let loadingTimer = null;
-
-    const startLoading = () => {
-        clearError();
-
-        loadingMessage.hidden = false;
-        resultArea.hidden = true;
-
-        generateButton.disabled = true;
-        generateButton.setAttribute("aria-busy", "true");
-
-        if (generateButtonText) {
-            generateButtonText.textContent =
-                "AI가 수업안을 만드는 중";
-        }
-
-        if (loadingDetail) {
-            loadingDetail.textContent =
-                "수업 조건을 분석하고 음악 활동을 구성하고 있어요";
+        try {
+            data = await response.json();
+        } catch {
+            throw new Error(
+                "서버 응답을 읽을 수 없습니다"
+            );
         }
 
 
-        let seconds = 0;
-
-        loadingTimer = setInterval(() => {
-            seconds += 1;
-
-            if (!loadingDetail) {
-                return;
-            }
-
-            if (seconds < 10) {
-                loadingDetail.textContent =
-                    "수업 조건을 분석하고 음악 활동을 구성하고 있어요";
-            } else if (seconds < 25) {
-                loadingDetail.textContent =
-                    "연령에 맞는 활동 순서를 설계하고 있어요";
-            } else if (seconds < 40) {
-                loadingDetail.textContent =
-                    "클래식 음악과 음악교육 방법을 연결하고 있어요";
-            } else {
-                loadingDetail.textContent =
-                    "조금만 더 기다려 주세요. 완성된 수업안을 준비하고 있어요";
-            }
-        }, 1000);
-
-
-        loadingMessage.scrollIntoView({
-            behavior: "smooth",
-            block: "center"
-        });
-    };
-
-
-    const stopLoading = () => {
-        if (loadingTimer) {
-            clearInterval(loadingTimer);
-            loadingTimer = null;
-        }
-
-        loadingMessage.hidden = true;
-
-        generateButton.disabled = false;
-        generateButton.removeAttribute("aria-busy");
-
-        if (generateButtonText) {
-            generateButtonText.textContent =
-                "AI 수업안 생성하기";
-        }
-    };
-
-
-    /* =========================
-       결과 정리
-    ========================= */
-
-    const normalizeResult = (result) => {
-        if (typeof result !== "string") {
-            return String(result ?? "");
-        }
-
-        return result
-            .replace(/\r\n/g, "\n")
-            .replace(/\r/g, "\n")
-            .replace(/\n{4,}/g, "\n\n\n")
-            .trim();
-    };
-
-
-    const extractResult = (data) => {
-        if (!data) {
-            return "";
-        }
-
-        if (typeof data === "string") {
-            return data;
-        }
-
-        if (typeof data.result === "string") {
-            return data.result;
-        }
-
-        if (typeof data.lessonPlan === "string") {
-            return data.lessonPlan;
-        }
-
-        if (typeof data.lesson_plan === "string") {
-            return data.lesson_plan;
-        }
-
-        if (typeof data.content === "string") {
-            return data.content;
-        }
-
-        if (typeof data.output === "string") {
-            return data.output;
-        }
-
-        if (typeof data.text === "string") {
-            return data.text;
-        }
-
-        if (data.data) {
-            return extractResult(data.data);
-        }
-
-        return "";
-    };
-
-
-    const showResult = (result) => {
-        lessonResult.textContent = result;
-
-        resultArea.hidden = false;
-
-        resultArea.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
-    };
-
-
-    /* =========================
-       입력 데이터 수집
-       백엔드 generate.py와 이름을 맞춤
-    ========================= */
-
-    const collectFormData = () => {
-        return {
-            age: getValue("age"),
-
-            lessonTime: getValue("lesson-time"),
-
-            theme: getValue("theme"),
-
-            musicConcepts: getCheckedValues("musicConcept"),
-
-            activityTypes: getCheckedValues("activityType"),
-
-            teachingMethods: getCheckedValues("teachingMethod"),
-
-            musicConceptOther: getValue(
-                "music-concept-other"
-            ),
-
-            activityTypeOther: getValue(
-                "activity-type-other"
-            ),
-
-            difficulty: getValue("difficulty"),
-
-            classicalMusic: getValue(
-                "classical-music"
-            ),
-
-            classicalTitle: getValue(
-                "classical-title"
-            ),
-
-            materials: getValue("materials"),
-
-            request: getValue("request")
-        };
-    };
-
-
-    /* =========================
-       필수 입력 확인
-    ========================= */
-
-    const validateFormData = (data) => {
-
-        if (!data.age) {
-            return "수업 연령을 선택해 주세요";
-        }
-
-
-        if (!data.lessonTime) {
-            return "수업 시간을 선택해 주세요";
-        }
-
-
-        if (!data.theme) {
-            return "수업 주제를 입력해 주세요";
-        }
-
-
-        if (!data.difficulty) {
-            return "수업 난이도를 선택해 주세요";
-        }
-
-
-        if (!data.classicalMusic) {
-            return "클래식 음악 선택 방식을 골라 주세요";
+        if (!response.ok) {
+            throw new Error(
+                data.error ||
+                `서버 오류가 발생했습니다 (${response.status})`
+            );
         }
 
 
         if (
-            data.classicalMusic === "직접 입력" &&
-            !data.classicalTitle
+            !data.result ||
+            typeof data.result !== "string" ||
+            !data.result.trim()
         ) {
-            return "원하는 클래식 곡명을 입력해 주세요";
+            throw new Error(
+                "생성된 수업안이 없습니다"
+            );
         }
 
 
-        return "";
-    };
+        stopLoading();
+
+        showResult(
+            data.result.trim()
+        );
+
+    } catch (error) {
+
+        console.error(
+            "AI 수업안 생성 오류:",
+            error
+        );
 
 
-    /* =========================
-       API 요청
-       최대 60초
-    ========================= */
+        if (error.name === "AbortError") {
 
-    const requestLessonPlan = async (data) => {
-
-        const controller = new AbortController();
-
-        const timeoutId = setTimeout(() => {
-            controller.abort();
-        }, 60000);
-
-
-        try {
-
-            const response = await fetch(
-                "/api/generate",
-                {
-                    method: "POST",
-
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-
-                    body: JSON.stringify(data),
-
-                    signal: controller.signal
-                }
+            showError(
+                "AI 응답이 60초 이상 걸리고 있습니다. 잠시 후 다시 시도해 주세요"
             );
 
+        } else {
 
-            let responseData;
-
-
-            try {
-
-                responseData = await response.json();
-
-            } catch (error) {
-
-                throw new Error(
-                    "서버에서 올바른 결과를 받지 못했습니다"
-                );
-            }
-
-
-            if (!response.ok) {
-
-                throw new Error(
-                    responseData?.error ||
-                    responseData?.message ||
-                    `서버 오류가 발생했습니다 (${response.status})`
-                );
-            }
-
-
-            return responseData;
-
-        } finally {
-
-            clearTimeout(timeoutId);
+            showError(
+                error.message ||
+                "AI 수업안 생성 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요"
+            );
 
         }
-    };
 
+    } finally {
 
-    /* =========================
-       폼 제출
-    ========================= */
-
-    form.addEventListener(
-        "submit",
-        async (event) => {
-
-            event.preventDefault();
-
-            clearError();
-
-            const formData = collectFormData();
-
-            const validationMessage =
-                validateFormData(formData);
-
-
-            if (validationMessage) {
-
-                showError(validationMessage);
-
-                return;
-            }
-
-
-            lessonResult.textContent = "";
-
-            resultArea.hidden = true;
-
-
-            /* 로딩 박스 표시 */
-
-            startLoading();
-
-
-            try {
-
-                const responseData =
-                    await requestLessonPlan(formData);
-
-
-                const result =
-                    normalizeResult(
-                        extractResult(responseData)
-                    );
-
-
-                if (!result) {
-
-                    throw new Error(
-                        "AI가 수업안을 생성했지만 결과 내용이 없습니다"
-                    );
-                }
-
-
-                stopLoading();
-
-                showResult(result);
-
-
-            } catch (error) {
-
-                stopLoading();
-
-                console.error(
-                    "수업안 생성 오류:",
-                    error
-                );
-
-
-                if (error.name === "AbortError") {
-
-                    showError(
-                        "AI 수업안 생성에 시간이 오래 걸리고 있습니다. 잠시 후 다시 시도해 주세요"
-                    );
-
-                    return;
-                }
-
-
-                showError(
-                    error.message ||
-                    "수업안을 생성하는 중 오류가 발생했습니다. 다시 시도해 주세요"
-                );
-
-
-            } finally {
-
-                generateButton.disabled = false;
-
-            }
-
-        }
-    );
-
-
-    /* =========================
-       다시 만들기
-    ========================= */
-
-    if (retryButton) {
-
-        retryButton.addEventListener(
-            "click",
-            () => {
-
-                resultArea.hidden = true;
-
-                lessonResult.textContent = "";
-
-                clearError();
-
-                window.scrollTo({
-                    top: document.getElementById(
-                        "generator"
-                    ).offsetTop - 80,
-
-                    behavior: "smooth"
-                });
-
-            }
-        );
+        clearTimeout(timeoutId);
+        stopLoading();
 
     }
 
-
-    /* =========================
-       버튼 마이크로 인터랙션
-       보너스 미션 유지
-    ========================= */
-
-    generateButton.addEventListener(
-        "mouseenter",
-        () => {
-
-            if (!generateButton.disabled) {
-
-                generateButton.style.transform =
-                    "translateY(-2px)";
-
-            }
-
-        }
-    );
+});
 
 
-    generateButton.addEventListener(
-        "mouseleave",
-        () => {
+/* =====================================================
+   다시 만들기
+===================================================== */
 
-            if (!generateButton.disabled) {
+retryButton.addEventListener("click", () => {
 
-                generateButton.style.transform = "";
+    hideError();
+    hideResult();
 
-            }
-
-        }
-    );
-
-
-    /* =========================
-       Enter 키 처리
-    ========================= */
-
-    form.addEventListener(
-        "keydown",
-        (event) => {
-
-            if (
-                event.key === "Enter" &&
-                event.target.tagName !== "TEXTAREA"
-            ) {
-
-                event.preventDefault();
-
-            }
-
-        }
-    );
+    lessonForm.requestSubmit();
 
 });
+
+/* =====================================================
+   클래식 변경
+===================================================== */
+
+classicalMusicSelect.addEventListener(
+    "change",
+    updateClassicalInput
+);
+
+
+/* =====================================================
+   초기 상태
+===================================================== */
+
+updateClassicalInput();
+hideError();
+hideResult();
+stopLoading();

@@ -1596,3 +1596,146 @@ textarea:focus {
         "Noto Sans KR",
         sans-serif;
 }
+
+#generator .section-heading {
+    max-width: 900px;
+}
+
+/* =====================================================
+   BONUS UX INTERACTIONS
+===================================================== */
+
+.feature-card {
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+}
+
+
+.about-card {
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.about-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+}
+
+
+.contact-card {
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
+}
+
+
+.checkbox-item {
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.checkbox-item:hover {
+    border-color: var(--accent);
+    background: #fff6ee;
+    transform: translateY(-1px);
+}
+
+
+.generate-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    background: var(--accent-dark);
+}
+
+
+.secondary-button:hover {
+    transform: translateY(-2px);
+    background: #f8ecdd;
+}
+
+ /* =====================================================
+    LESSON REPORT RESULT
+ ===================================================== */
+
+.lesson-section-title {
+    margin: 30px 0 14px;
+
+    padding-bottom: 10px;
+
+    border-bottom: 1px solid #e7cfae;
+
+    color: var(--accent-dark);
+
+    font-family: "Noto Serif KR", serif;
+    font-size: 1.32rem;
+    font-weight: 800;
+
+    line-height: 1.5;
+}
+
+
+.lesson-section-title:first-child {
+    margin-top: 0;
+}
+
+
+.lesson-subtitle {
+    margin: 18px 0 8px;
+
+    color: #855535;
+
+    font-size: 1.04rem;
+    font-weight: 800;
+}
+
+
+.lesson-paragraph {
+    margin: 8px 0;
+
+    color: var(--text);
+
+    line-height: 1.85;
+}
+
+
+.lesson-list {
+    margin: 10px 0 18px;
+
+    padding-left: 24px;
+}
+
+
+.lesson-list li {
+    margin: 6px 0;
+
+    line-height: 1.75;
+}
+
+
+.result-area {
+    opacity: 0;
+    transform: translateY(18px);
+
+    transition:
+        opacity 0.35s ease,
+        transform 0.35s ease;
+}
+
+
+.result-area.result-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
