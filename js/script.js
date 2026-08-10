@@ -420,14 +420,14 @@ lessonForm.addEventListener("submit", async (event) => {
 
 
     /* =========================
-       60초 타임아웃
-    ========================== */
+      240초 타임아웃
+   ========================== */
 
     const controller = new AbortController();
 
     const timeoutId = setTimeout(() => {
         controller.abort();
-    }, 60000);
+    }, 240000);
 
 
     try {
@@ -495,8 +495,8 @@ lessonForm.addEventListener("submit", async (event) => {
         if (error.name === "AbortError") {
 
             showError(
-                "AI 응답이 60초 이상 걸리고 있습니다. 잠시 후 다시 시도해 주세요"
-            );
+                "AI 응답이 240초 이상 걸리고 있습니다. 잠시 후 다시 시도해 주세요"
+           );
 
         } else {
 
