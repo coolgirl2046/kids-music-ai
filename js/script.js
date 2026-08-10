@@ -175,7 +175,12 @@ function formatLessonResult(rawText) {
 
     let html = "";
     let listOpen = false;
+    let paragraphBuffer = [];
 
+
+    /* =====================================================
+       목록 닫기
+    ===================================================== */
 
     function closeList() {
 
@@ -187,23 +192,58 @@ function formatLessonResult(rawText) {
     }
 
 
-    function addDetail(label, value = "") {
+    /* =====================================================
+       이어지는 일반 문장을 한 문단으로 출력
+    ===================================================== */
+
+    function flushParagraph() {
+
+        if (paragraphBuffer.length === 0) {
+            return;
+        }
 
         closeList();
 
-        html += `
-            <div class="lesson-detail">
-                <strong>${escapeHtml(label)}</strong>
-                ${
-                    value
-                        ? `<span>${escapeHtml(value)}</span>`
-                        : ""
-                }
-            </div>
-        `;
+        const paragraphText =
+            paragraphBuffer.join(" ").trim();
+
+        if (paragraphText) {
+            html +=
+                `<p class="lesson-paragraph">` +
+                `${escapeHtml(paragraphText)}` +
+                `</p>`;
+        }
+
+        paragraphBuffer = [];
 
     }
 
+
+    /* =====================================================
+       세부 항목 출력
+    ===================================================== */
+
+    function addDetail(label, value = "") {
+
+        flushParagraph();
+        closeList();
+
+        html +=
+            `<div class="lesson-detail">` +
+                `<strong>${escapeHtml(label)}</strong>` +
+                (
+                    value
+                        ? `<span>${escapeHtml(value)}</span>`
+                        : ""
+                ) +
+            `</div>`;
+
+    }
+
+
+    /* =====================================================
+       세부 항목 이름
+    ===================================================== */
 
     const detailLabels = [
         "예상 시간",
@@ -224,23 +264,31 @@ function formatLessonResult(rawText) {
     ];
 
 
+    /* =====================================================
+       한 줄씩 분석
+    ===================================================== */
+
     for (const rawLine of lines) {
 
+        /*
+         * 빈 줄은 화면 요소를 만들지 않습니다.
+         * 일반 문장만 한 문단으로 정리합니다.
+         */
+
         if (!rawLine) {
-            closeList();
+            flushParagraph();
             continue;
         }
 
 
-        /*
-         * Markdown 제목 여부를 먼저 확인합니다.
-         * ### 제목 같은 형식도 실제 제목으로 처리합니다.
-         */
+        /* =================================================
+           Markdown 제목 기호 제거
+        ================================================= */
 
         const markdownHeading =
             /^#{1,6}\s+/.test(rawLine);
 
-        let line = rawLine
+        const line = rawLine
             .replace(/^#{1,6}\s+/, "")
             .trim();
 
@@ -250,14 +298,14 @@ function formatLessonResult(rawText) {
         }
 
 
-        /*
-         * 큰 항목
-         *
-         * 1. 수업 제목
-         * 9. 전개 활동 1
-         * ① 파라슈트 활동
-         * ### 전개 활동
-         */
+        /* =================================================
+           큰 제목 판별
+
+           1. 수업 제목
+           9. 전개 활동 1
+           ① 활동 제목
+           ### 제목
+        ================================================= */
 
         const numberedHeading =
             /^\d{1,2}[.)]\s+/.test(line);
@@ -272,43 +320,49 @@ function formatLessonResult(rawText) {
             circledHeading
         ) {
 
+            flushParagraph();
             closeList();
 
-            html += `
-                <h3 class="lesson-section-title">
-                    ${escapeHtml(line)}
-                </h3>
-            `;
+            html +=
+                `<h3 class="lesson-section-title">` +
+                    `${escapeHtml(line)}` +
+                `</h3>`;
 
             continue;
         }
 
 
-        /*
-         * 목록 기호 제거
-         */
+        /* =================================================
+           목록 판별
+        ================================================= */
 
         const bulletMatch =
             line.match(/^[-•]\s*(.+)$/);
 
-        let contentLine =
+        const contentLine =
             bulletMatch
                 ? bulletMatch[1].trim()
                 : line;
 
 
-        /*
-         * 세부 항목
-         *
-         * 예상 시간: 5분
-         * 활동 이름: 봄바람 표현하기
-         * 작곡가: 비발디
-         */
+        /* =================================================
+           세부 항목 판별
+
+           예상 시간: 5분
+           활동 이름: 리듬 기차
+           작곡가: 비발디
+        ================================================= */
 
         let detailHandled = false;
 
 
         for (const label of detailLabels) {
+
+            /*
+             * 항목명만 있는 경우
+             *
+             * - 유아와 나눌 질문
+             */
 
             if (
                 contentLine === label ||
@@ -316,19 +370,25 @@ function formatLessonResult(rawText) {
             ) {
 
                 addDetail(label);
+
                 detailHandled = true;
                 break;
             }
 
 
+            /*
+             * 항목명과 내용이 한 줄에 있는 경우
+             *
+             * - 예상 시간: 5분
+             */
+
             if (
                 contentLine.startsWith(`${label}:`)
             ) {
 
-                const value =
-                    contentLine
-                        .slice(label.length + 1)
-                        .trim();
+                const value = contentLine
+                    .slice(label.length + 1)
+                    .trim();
 
                 addDetail(
                     label,
@@ -347,9 +407,12 @@ function formatLessonResult(rawText) {
         }
 
 
-        /*
-         * 일반적인 '소제목:' 형식
-         */
+        /* =================================================
+           일반 소제목
+
+           준비물:
+           활동 방법:
+        ================================================= */
 
         if (
             /^[가-힣A-Za-z0-9\s·/]+:$/.test(
@@ -357,60 +420,63 @@ function formatLessonResult(rawText) {
             )
         ) {
 
+            flushParagraph();
             closeList();
 
-            html += `
-                <p class="lesson-subtitle">
-                    ${escapeHtml(
+            html +=
+                `<p class="lesson-subtitle">` +
+                    `${escapeHtml(
                         contentLine.replace(/:$/, "")
-                    )}
-                </p>
-            `;
+                    )}` +
+                `</p>`;
 
             continue;
         }
 
 
-        /*
-         * 일반 목록
-         *
-         * 목표 1
-         * 준비물
-         * 확장 아이디어 등
-         */
+        /* =================================================
+           목록
+
+           - 목표
+           - 질문
+           - 준비물
+        ================================================= */
 
         if (bulletMatch) {
+
+            flushParagraph();
 
             if (!listOpen) {
                 html += `<ul class="lesson-list">`;
                 listOpen = true;
             }
 
-            html += `
-                <li>
-                    ${escapeHtml(contentLine)}
-                </li>
-            `;
+            html +=
+                `<li>${escapeHtml(contentLine)}</li>`;
 
             continue;
         }
 
 
-        /*
-         * 일반 본문
-         */
+        /* =================================================
+           일반 문장
+
+           AI가 여러 줄로 끊어 작성해도
+           한 문단으로 묶어서 출력합니다.
+        ================================================= */
 
         closeList();
 
-        html += `
-            <p class="lesson-paragraph">
-                ${escapeHtml(line)}
-            </p>
-        `;
+        paragraphBuffer.push(line);
 
     }
 
 
+    /* =====================================================
+       마지막 남은 내용 정리
+    ===================================================== */
+
+    flushParagraph();
     closeList();
 
     return html;

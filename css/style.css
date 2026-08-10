@@ -1251,7 +1251,7 @@ textarea:focus {
 
     background: #fffaf4;
 
-    white-space: pre-wrap;
+    white-space: normal;
 
     overflow-wrap: anywhere;
 
