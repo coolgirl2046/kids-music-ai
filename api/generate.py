@@ -615,15 +615,15 @@ class handler(BaseHTTPRequestHandler):
             # =========================================
             # OpenAI
             #
-            # 한 번의 요청은 최대 55초 대기
-            # 실패 시 최대 3회 자동 재시도
-            # 최초 요청 포함 최대 4회 시도
+            # 한 번의 요청은 최대 100초 대기
+            # 실패 시 최대 1회 자동 재시도
+            # 최초 요청 포함 최대 2회 시도
             # =========================================
 
             client = OpenAI(
                 api_key=OPENAI_API_KEY,
-                timeout=55.0,
-                max_retries=3
+                timeout=100.0,
+                max_retries=1
             )
 
 
