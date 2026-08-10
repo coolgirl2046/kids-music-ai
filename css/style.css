@@ -1724,6 +1724,65 @@ textarea:focus {
     line-height: 1.75;
 }
 
+.lesson-detail {
+    display: grid;
+    grid-template-columns: minmax(130px, 170px) 1fr;
+    gap: 12px;
+
+    margin: 10px 0;
+    padding: 14px 16px;
+
+    border: 1px solid #ead8c3;
+    border-radius: 12px;
+
+    background: #fffaf5;
+
+    line-height: 1.7;
+}
+
+.lesson-detail strong {
+    color: #855535;
+
+    font-size: 0.96rem;
+    font-weight: 800;
+}
+
+.lesson-detail span {
+    color: var(--text);
+
+    font-size: 0.98rem;
+    line-height: 1.75;
+}
+
+.result-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+
+    margin-top: 28px;
+}
+
+.result-actions .secondary-button {
+    width: 100%;
+    margin-top: 0;
+
+    padding: 12px 16px;
+
+    line-height: 1.45;
+}
+
+@media (max-width: 640px) {
+
+    .lesson-detail {
+        grid-template-columns: 1fr;
+        gap: 5px;
+    }
+
+    .result-actions {
+        grid-template-columns: 1fr;
+    }
+
+}
 
 .result-area {
     opacity: 0;

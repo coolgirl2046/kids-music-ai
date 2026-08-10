@@ -12,14 +12,16 @@ const lessonResult = document.querySelector("#lesson-result");
 const generateButton = document.querySelector("#generate-button");
 const generateButtonText = document.querySelector("#generate-button-text");
 
-const retryButton = document.querySelector("#retry-button");
+const regenerateButton = document.querySelector("#regenerate-button");
+const editConditionButton = document.querySelector("#edit-condition-button");
 
 const classicalMusicSelect = document.querySelector("#classical-music");
 const classicalTitleInput = document.querySelector("#classical-title");
 const classicalTitleGroup = document.querySelector("#classical-title-group");
 
 let loadingTimer = null;
-
+let lastLessonResult = "";
+let regenerationRequested = false;
 
 /* =====================================================
    체크박스 값 가져오기
@@ -144,12 +146,13 @@ function escapeHtml(text) {
 
 function cleanMarkdown(text) {
     return text
-        .replace(/```[\s\S]*?```/g, "")
-        .replace(/^#{1,6}\s*/gm, "")
+        .replace(/^```[A-Za-z0-9_-]*\s*$/gm, "")
+        .replace(/^```$/gm, "")
         .replace(/\*\*(.*?)\*\*/g, "$1")
         .replace(/__(.*?)__/g, "$1")
         .replace(/\*(.*?)\*/g, "$1")
         .replace(/_(.*?)_/g, "$1")
+        .replace(/`(.*?)`/g, "$1")
         .replace(/^---+$/gm, "")
         .replace(/^___+$/gm, "")
         .replace(/^\*\*\*+$/gm, "")
@@ -163,6 +166,7 @@ function cleanMarkdown(text) {
 ===================================================== */
 
 function formatLessonResult(rawText) {
+
     const cleaned = cleanMarkdown(rawText);
 
     const lines = cleaned
@@ -172,75 +176,240 @@ function formatLessonResult(rawText) {
     let html = "";
     let listOpen = false;
 
+
     function closeList() {
+
         if (listOpen) {
             html += "</ul>";
             listOpen = false;
         }
+
     }
 
-    for (const line of lines) {
 
-        if (!line) {
+    function addDetail(label, value = "") {
+
+        closeList();
+
+        html += `
+            <div class="lesson-detail">
+                <strong>${escapeHtml(label)}</strong>
+                ${
+                    value
+                        ? `<span>${escapeHtml(value)}</span>`
+                        : ""
+                }
+            </div>
+        `;
+
+    }
+
+
+    const detailLabels = [
+        "예상 시간",
+        "교사 진행 방법",
+        "유아 활동",
+        "활동 이름",
+        "활동 방법",
+        "교사 발문 예시",
+        "음악교육적 의미",
+        "작곡가",
+        "작품명",
+        "추천 이유",
+        "수업 활용 방법",
+        "난이도 조절 방법",
+        "통합반 운영 방법",
+        "안전 또는 운영상 주의사항",
+        "유아와 나눌 질문"
+    ];
+
+
+    for (const rawLine of lines) {
+
+        if (!rawLine) {
             closeList();
             continue;
         }
 
-        const safeLine = escapeHtml(line);
 
-        // 큰 번호 제목
-        if (/^\d+\.\s+/.test(line)) {
+        /*
+         * Markdown 제목 여부를 먼저 확인합니다.
+         * ### 제목 같은 형식도 실제 제목으로 처리합니다.
+         */
+
+        const markdownHeading =
+            /^#{1,6}\s+/.test(rawLine);
+
+        let line = rawLine
+            .replace(/^#{1,6}\s+/, "")
+            .trim();
+
+
+        if (!line) {
+            continue;
+        }
+
+
+        /*
+         * 큰 항목
+         *
+         * 1. 수업 제목
+         * 9. 전개 활동 1
+         * ① 파라슈트 활동
+         * ### 전개 활동
+         */
+
+        const numberedHeading =
+            /^\d{1,2}[.)]\s+/.test(line);
+
+        const circledHeading =
+            /^[①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳]\s*/.test(line);
+
+
+        if (
+            markdownHeading ||
+            numberedHeading ||
+            circledHeading
+        ) {
+
             closeList();
 
             html += `
                 <h3 class="lesson-section-title">
-                    ${safeLine}
+                    ${escapeHtml(line)}
                 </h3>
             `;
 
             continue;
         }
 
-        // 목록
-        if (/^[-•]\s+/.test(line)) {
-            if (!listOpen) {
-                html += `<ul class="lesson-list">`;
-                listOpen = true;
+
+        /*
+         * 목록 기호 제거
+         */
+
+        const bulletMatch =
+            line.match(/^[-•]\s*(.+)$/);
+
+        let contentLine =
+            bulletMatch
+                ? bulletMatch[1].trim()
+                : line;
+
+
+        /*
+         * 세부 항목
+         *
+         * 예상 시간: 5분
+         * 활동 이름: 봄바람 표현하기
+         * 작곡가: 비발디
+         */
+
+        let detailHandled = false;
+
+
+        for (const label of detailLabels) {
+
+            if (
+                contentLine === label ||
+                contentLine === `${label}:`
+            ) {
+
+                addDetail(label);
+                detailHandled = true;
+                break;
             }
 
-            const itemText = line.replace(/^[-•]\s+/, "");
 
-            html += `
-                <li>
-                    ${escapeHtml(itemText)}
-                </li>
-            `;
+            if (
+                contentLine.startsWith(`${label}:`)
+            ) {
 
+                const value =
+                    contentLine
+                        .slice(label.length + 1)
+                        .trim();
+
+                addDetail(
+                    label,
+                    value
+                );
+
+                detailHandled = true;
+                break;
+            }
+
+        }
+
+
+        if (detailHandled) {
             continue;
         }
 
-        // "- 작곡가" 같은 소제목
-        if (/^[가-힣A-Za-z\s]+:$/.test(line)) {
+
+        /*
+         * 일반적인 '소제목:' 형식
+         */
+
+        if (
+            /^[가-힣A-Za-z0-9\s·/]+:$/.test(
+                contentLine
+            )
+        ) {
+
             closeList();
 
             html += `
                 <p class="lesson-subtitle">
-                    ${safeLine}
+                    ${escapeHtml(
+                        contentLine.replace(/:$/, "")
+                    )}
                 </p>
             `;
 
             continue;
         }
 
-        // 일반 문장
+
+        /*
+         * 일반 목록
+         *
+         * 목표 1
+         * 준비물
+         * 확장 아이디어 등
+         */
+
+        if (bulletMatch) {
+
+            if (!listOpen) {
+                html += `<ul class="lesson-list">`;
+                listOpen = true;
+            }
+
+            html += `
+                <li>
+                    ${escapeHtml(contentLine)}
+                </li>
+            `;
+
+            continue;
+        }
+
+
+        /*
+         * 일반 본문
+         */
+
         closeList();
 
         html += `
             <p class="lesson-paragraph">
-                ${safeLine}
+                ${escapeHtml(line)}
             </p>
         `;
+
     }
+
 
     closeList();
 
@@ -303,6 +472,9 @@ function updateClassicalInput() {
 
 lessonForm.addEventListener("submit", async (event) => {
     event.preventDefault();
+
+    const currentRegeneration = regenerationRequested;
+    regenerationRequested = false;
 
     hideError();
     hideResult();
@@ -408,7 +580,12 @@ lessonForm.addEventListener("submit", async (event) => {
 
         materials,
 
-        request: requestText
+        request: requestText,
+
+        regenerate: currentRegeneration,
+        previousResult: currentRegeneration
+            ? lastLessonResult
+            : ""
     };
 
 
@@ -480,8 +657,10 @@ lessonForm.addEventListener("submit", async (event) => {
 
         stopLoading();
 
+        lastLessonResult = data.result.trim();
+
         showResult(
-            data.result.trim()
+            lastLessonResult
         );
 
     } catch (error) {
@@ -521,12 +700,31 @@ lessonForm.addEventListener("submit", async (event) => {
    다시 만들기
 ===================================================== */
 
-retryButton.addEventListener("click", () => {
+regenerateButton.addEventListener("click", () => {
 
     hideError();
     hideResult();
 
+    regenerationRequested = true;
+
     lessonForm.requestSubmit();
+
+});
+
+
+editConditionButton.addEventListener("click", () => {
+
+    hideError();
+    hideResult();
+
+    regenerationRequested = false;
+
+    document
+        .querySelector("#generator")
+        .scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
 
 });
 
