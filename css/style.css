@@ -92,7 +92,7 @@ img {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--accent-dark);
-    white-space: nowrap;
+    white-space: normal;
 }
 
 
